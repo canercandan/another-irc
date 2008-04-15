@@ -1,0 +1,81 @@
+#########################
+
+   Miniproj  C-Unix
+
+         -
+
+       my_irc
+
+#########################
+
+</PRE><I>A realiser en binome.</I><PRE>
+
+Repertoire de rendu : ~/rendu/c/my_irc
+      contenant un unique Makefile et les 2 binaires
+      client et serveur.
+
+
+Il s'agit ici d'implementer un mini IRC, cote serveur et client.
+ (Pour ceux qui savent pas ce qu'est un IRC, c'est une sorte de CHAT,
+   ou encore un systeme de discussion en temps reel, qui gere des
+   groupes de discussions appeles "channel", et permet des echanges de
+   fichiers).
+
+Vous pouvez vous inspirer d'un code deja existant qui est une ebauche de
+ serveur. Il est disponible avec le sujet.
+
+</PRE><H1>A faire sur 20pts</H1><PRE>
+- Implementer la notion de nickname (un surnom, le login par default)
+- Implementer la notion de channel
+- Qui est loggue sur le channel ?
+- Envoi de messages a un utilisateur particulier du channel
+- Passage du code en mode non-bloquant: le code fourni est bloquant.
+   Si un client en "stoppe" (pas arrete..) le serveur peut se bloquer
+   apres un cours delai. Attention, un seul select dans votre code
+   est autorise.
+
+ATTENTION: cela n'a rien a voir avec des sockets non bloquantes qui
+           elles sont interdites (donc pas de fcntl(s, O_NONBLOCK))
+  
+
+</PRE><H1>En bonus sur 5pts</H1><PRE>
+- Envoi d'un fichier a un utilisateur donne du channel, avec demande
+  de confirmation de la part du destinataire.
+- Envoi d'un fichier en mode non bloquant
+- Envoi d'un fichier sans l'intermediaire du serveur.
+
+Ces bonus ne seront pris en compte que si la partie "Passage en non
+ bloquant" est realisee.
+
+L'utilisation de fork est interdite. Le serveur comme le client
+doivent etre capables de gerer correctement tous les echanges
+d'information.
+
+On veillera a utiliser des commandes clients proches de celles d'un
+ client irc classique :
+
+/server _host_[:port]     se connecte a un serveur.
+/nick _nickname_          se donne un nickname, utilise pour entrer dans
+                          un channel.
+/list [string]            liste les channels disponibles sur le serveur.
+                          N'affiche que les channels contenant
+                          la chaine "string" si celle-ci est specifiee.
+/join _channel_          rejoint un channel du serveur.
+/part _channel_          quite le channel.
+/users                    liste les utilisateurs connectes au channel.
+                          (liste les nickname bien sur..)
+_message_                 envoie un message a tous les utilisateurs du channel.
+/msg _nick_ _message_     envoie un message a un utilisateur specifique.
+/send_file _nick_ _file_  envoie un fichier a un utilisateur.
+/accept_file _nick_from_  accepte la reception d'un fichier en provenance
+                          d'un utilisateur du channel.
+
+
+NB: Pour faire des test, utiliser pour le numero de port votre UID afin
+    d'eviter les conflits.
+
+A faire imperativement sur NetBSD/i386, Alpha et Sun : client sur l'un, serveur sur
+  un autre...  Sujet a malus!!
+
+
+####### Done #######

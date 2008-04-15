@@ -1,0 +1,64 @@
+> -----Original Message-----
+> From: de-laz_g@epita.fr [mailto:de-laz_g@epita.fr] On Behalf Of e-Jah
+> Sent: mercredi 24 mars 2004 19:05
+> Cc: benoit_e@epitech.net
+> Subject: my_irc et interface graphique
+> 
+> Voila, tout est dans le sujet, peut-on utiliser une librairie
+> graphique, telle que GTK ou ncurses pour faire le client de my_irc ?
+
+oui, plutot, oui
+
+--
+Sebastien BENOIT
+
+
+On 3/23/06, Thibault Boustany <bousta_t@epitech.net> wrote:
+> Bonjour,
+> Pour le projet my_irc peut-on utiliser glade ?
+
+oui
+
+mais c'est a double tranchant car autant ca va vous simplifier la
+construction de l'interface, autant ca va vous compliquer le cote
+dynamique de l'interface (ajouter des channels, des utilisateurs
+dans la liste des gens sur un channel, etc...)
+
+une bonne methode est de faire des tests avec Glade pour voir comment
+s'utilisent les differents widgets, mais ensuite de reecrire a partir
+de zero son interface sans utiliser Glade pour etre sur de maitriser
+la construction de son interface, et donc les modifications dynamiques.
+
+--
+Sebastien BENOIT
+
+On 4/19/07, damien charbonnel <charbo_d@epitech.net> wrote:
+>
+> Il y a un probleme avec le lien donnee dans le sujet my_irc:
+>
+> You don't have permission to access /intra/projet/185/kirc.tar.gz on
+> this server.
+
+vous n'avez pas le droit d'utiliser ce fichier. vous devez utiliser bircd.tar.gz
+
+--
+Sebastien BENOIT
+
+On 4/26/07, salomon brys <brys_s@epitech.net> wrote:
+> Bonjour.
+> Par default, gcc compile avec /usr/pkg/include/gtk-1.2
+>
+> Comment faire pour que gcc compile avec /usr/pkg/include/gtk-2.0 ???
+
+depuis gtk-2.0 on utilise plus gtk-config mais pkg-config
+
+il faut donc utiliser cette commande pour le compilo:
+
+pkg-config --cflags gtk+-2.0
+
+et pour le linker:
+
+pkg-config --libs gtk+-2.0
+
+--
+Sebastien BENOIT
