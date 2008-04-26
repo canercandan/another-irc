@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 13:26:02 2008 julian kirtz
-** Last update Wed Apr 16 15:29:06 2008 julian kirtz
+** Last update Thu Apr 24 19:57:03 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -15,27 +15,27 @@
 char	*load_values_from_file(char *item, char *file)
 {
   FILE	*fd;
-  char	*str;
+  char	str[512];
   char	*value;
   char	*sp;
 
   fd = fopen(file, "r");
-  str = 0;
   value = 0;
-  while (feof(fd))
+  while (!feof(fd))
     {
-      free(str);
-      str = fgets(str, 512, fd);
-      sp = strchr(str, '=');
-      *sp = '\0';
-      if (strcmp(item, str) == 0)
+      fgets(str, 512, fd);
+      if (sp = strrchr(str, '\n'))
+	*sp =  '\0';
+      if (sp = strchr(str, '='))
+	*sp = '\0';
+      if (strcmp(item, str) == 0 && strlen(sp + 1))
 	{
 	  value = xmalloc(sizeof(char) * (strlen(sp + 1) + 1));
 	  value = strcpy(value, sp + 1);
+	  printf("Value: [%s]\n", value);
 	  break;
 	}
     }
-  free(str);
   fclose(fd);
   return (value);
 }

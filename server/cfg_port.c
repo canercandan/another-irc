@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 12:53:08 2008 julian kirtz
-** Last update Wed Apr 16 15:13:22 2008 julian kirtz
+** Last update Mon Apr 21 15:59:48 2008 julian kirtz
 */
 
 #include <string.h>
@@ -20,13 +20,17 @@ void	cfg_port(int *port)
   int	i;
 
   values = load_values_from_file(PORT_ITEM, SERVER_CFG_FILE);
-  memset(port, 0, MAX_PORT);
+  memset(port, 0, MAX_PORT * sizeof(int));
   offset = 0;
   i = 0;
-  while (values[offset])
+  if (values)
     {
-      offset_to_next_value(&offset, values, ',');
-      port[i++] = atoi(&(values[offset]));
+      offset_to_next_value(&offset, values, 0);
+      while (values[offset])
+	{
+	  port[i++] = atoi(&(values[offset]));
+	  offset_to_next_value(&offset, values, ',');
+	}
+      free(values);
     }
-  free(values);
 }

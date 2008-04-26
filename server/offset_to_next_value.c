@@ -5,11 +5,23 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 13:09:32 2008 julian kirtz
-** Last update Wed Apr 16 13:21:23 2008 julian kirtz
+** Last update Wed Apr 16 18:55:49 2008 julian kirtz
 */
+
+#include <string.h>
 
 void	offset_to_next_value(int *offset, char *str, char sep)
 {
-  while (str[*offset] && (str[*offset] == ' ' || str[*offset] == sep))
+  if (sep)
+    while (str[*offset])
+      {
+	if (str[*offset] == sep)
+	  {
+	    (*offset)++;
+	    break;
+	  }
+	(*offset)++;
+      }
+  while (str[*offset] && str[*offset] == ' ')
     (*offset)++;
 }
