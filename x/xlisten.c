@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 11:47:23 2008 caner candan
-** Last update Sun Apr 27 11:47:24 2008 caner candan
+** Last update Sun Apr 27 14:24:29 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -21,9 +21,8 @@ int	xlisten(int s, int backlog)
 
   if ((rc = listen(s, backlog)) < 0)
     {
-      fprintf(stderr, "Error with listen()\n");
+      perror("listen");
       close(s);
-      exit(FALSE);
     }
   return (rc);
 }

@@ -5,14 +5,13 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 11:48:32 2008 caner candan
-** Last update Sun Apr 27 11:48:33 2008 caner candan
+** Last update Sun Apr 27 14:22:27 2008 caner candan
 */
 
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
 #include "x.h"
 
 int	xaccept(int s, void *addr, void *addrlen)
@@ -21,10 +20,6 @@ int	xaccept(int s, void *addr, void *addrlen)
 
   if ((sd = accept(s, (struct sockaddr *) addr,
 		   (socklen_t *) addrlen)) < 0)
-    {
-      fprintf(stderr, "Error with accept\n");
-      close(s);
-      exit(FALSE);
-    }
+    perror("accept");
   return (sd);
 }

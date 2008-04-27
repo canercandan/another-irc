@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 11:47:14 2008 caner candan
-** Last update Sun Apr 27 11:47:15 2008 caner candan
+** Last update Sun Apr 27 14:14:44 2008 caner candan
 */
 
 #include <netdb.h>
@@ -13,13 +13,11 @@
 #include <stdlib.h>
 #include "x.h"
 
-struct hostent		*xgethostbyname(char *name)
+void			*xgethostbyname(const char *name)
 {
   struct hostent	*h;
 
   if (!(h = gethostbyname(name)))
-    {
-      perror("gethostbyname");
-    }
+    perror("gethostbyname");
   return (h);
 }

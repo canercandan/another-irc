@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 11:47:54 2008 caner candan
-** Last update Sun Apr 27 11:47:54 2008 caner candan
+** Last update Sun Apr 27 14:26:06 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -21,9 +21,8 @@ int	xsend(int s, const void *msg, int len, int flags)
 
   if ((rc = send(s, msg, (size_t) len, flags)) < 0)
     {
-      fprintf(stderr, "Error with send()\n");
+      perror("send");
       close(s);
-      exit(FALSE);
     }
   return (rc);
 }

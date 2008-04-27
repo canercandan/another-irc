@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 11:47:30 2008 caner candan
-** Last update Sun Apr 27 11:47:31 2008 caner candan
+** Last update Sun Apr 27 14:24:59 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -19,7 +19,7 @@ void	*xmalloc(int size)
   p = malloc(size);
   if (p == NULL)
     {
-      fprintf(stderr, "xmalloc: not enough memory\n");
+      perror("xmalloc: not enough memory");
       exit(EXIT_FAIL);
     }
   return (p);
