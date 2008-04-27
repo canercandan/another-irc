@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Sun Apr 27 11:55:33 2008 caner candan
+## Last update Sun Apr 27 13:59:55 2008 julian kirtz
 ##
 
 NAME_SRV	=	server
@@ -37,7 +37,43 @@ SRCS_X		=	$(PATH_X)xaccept.c		\
 			$(PATH_X)xsocket.c		\
 			$(PATH_X)xfork.c
 
-SRCS_SRV	=	$(PATH_SRV)main.c
+SRCS_SRV	=	$(PATH_SRV)add_client_to_chan.c \
+			$(PATH_SRV)cfg_ip.c \
+			$(PATH_SRV)cfg_key.c \
+			$(PATH_SRV)cfg_port.c \
+			$(PATH_SRV)cfg_timeout.c \
+			$(PATH_SRV)client_socket_read.c \
+			$(PATH_SRV)client_socket_write.c \
+			$(PATH_SRV)cmd_join.c \
+			$(PATH_SRV)cmd_nick.c \
+			$(PATH_SRV)cmd_pass.c \
+			$(PATH_SRV)cmd_quit.c \
+			$(PATH_SRV)cmd_user.c \
+			$(PATH_SRV)count_nb_port.c \
+			$(PATH_SRV)create_chan.c \
+			$(PATH_SRV)create_server.c \
+			$(PATH_SRV)delete_client.c \
+			$(PATH_SRV)do_command.c \
+			$(PATH_SRV)extract_msg.c \
+			$(PATH_SRV)get_chan.c \
+			$(PATH_SRV)get_next_message.c \
+			$(PATH_SRV)init_all_fd.c \
+			$(PATH_SRV)init_client.c \
+			$(PATH_SRV)is_digit.c \
+			$(PATH_SRV)is_letter.c \
+			$(PATH_SRV)is_special.c \
+			$(PATH_SRV)load_values_from_file.c \
+			$(PATH_SRV)main.c \
+			$(PATH_SRV)nicklist_of_chan.c \
+			$(PATH_SRV)offset_to_next_value.c \
+			$(PATH_SRV)protocol_interpreter.c \
+			$(PATH_SRV)read_all_fd.c \
+			$(PATH_SRV)reply_endofnames.c \
+			$(PATH_SRV)reply_error.c \
+			$(PATH_SRV)reply_namreply.c \
+			$(PATH_SRV)reply_notopic.c \
+			$(PATH_SRV)reply_response.c \
+			$(PATH_SRV)server_socket_read.c
 
 SRCS_CLI	=	$(PATH_CLI)main.c
 
@@ -65,7 +101,7 @@ all		:
 			@$(MKD) $(PATH_CLI)
 			@$(MKD) $(PATH_BIN)
 			@$(MK) $(BIN_SRV)
-			@$(MK) $(BIN_CLI)
+			##@$(MK) $(BIN_CLI)
 
 $(BIN_SRV)	:	$(OBJS_SRV)
 			@$(CC) -o $@ $(OBJS_SRV) $(LDFLAGS)

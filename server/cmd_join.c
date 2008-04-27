@@ -5,13 +5,13 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 12:04:03 2008 julian kirtz
-** Last update Sat Apr 26 20:03:33 2008 julian kirtz
+** Last update Sun Apr 27 12:30:57 2008 julian kirtz
 */
 
 #include <sys/time.h>
 #include "server.h"
 
-char	*get_next_chan(char *chan_name, char *chan_list, int chan_index)
+void	get_next_chan(char *chan_name, char *chan_list, int chan_index)
 {
   int	j;
   int	i;
@@ -66,14 +66,13 @@ char	check_key(t_channel *chan, int chan_index, char *key_list)
   return (0);
 }
 
-char		user_in_chan(t_server *serv, int fd, char *chan_name)
+char		user_in_chan(t_server *serv, int fd, t_channel *chan)
 {
   t_list	*current;
 
   current = serv->client[fd].channel;
   while (current)
-    if (strcmp(((t_channel *)current->data)->name,
-	       chan_name, MAX_CHAN_LEN) == 0)
+    if ((t_channel *)current->data == chan)
       return (1);
     else
       current = current->next;
@@ -96,7 +95,7 @@ void	cmd_join(t_server *serv, int fd, t_message *msg)
 	{
 	  if (!check_chan(chan_name))
 	    reply_response(serv, fd, ERR_NOSUCHCHANNEL, 0);
-	  else if (chan = get_chan(serv->channel, chan_name))
+	  else if ((chan = get_chan(serv->channel, chan_name)))
 	    {
 	      if (!check_key(chan, chan_index, msg->param[1]))
 		reply_response(serv, fd, ERR_BADCHANNELKEY, 0);
@@ -105,9 +104,9 @@ void	cmd_join(t_server *serv, int fd, t_message *msg)
 	    }
 	  else
 	    {
-	      chan = create_chan(serv, chan_name);
+	      chan = create_chan(chan_name);
 	      add_client_to_chan(serv, fd, chan);
-	      reply_reponse(serv, fd, RPL_NOTOPIC, chan);
+	      reply_response(serv, fd, RPL_NOTOPIC, chan);
 	      reply_response(serv, fd, RPL_NAMREPLY, chan);
 	      reply_response(serv, fd, RPL_ENDOFNAMES, chan);
 	    }

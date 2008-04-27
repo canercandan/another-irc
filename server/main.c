@@ -5,15 +5,14 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu Apr  3 09:23:57 2008 caner candan
-** Last update Thu Apr 24 18:40:27 2008 julian kirtz
+** Last update Sun Apr 27 13:40:43 2008 julian kirtz
 */
 
+#include <stdio.h>
 #include <sys/time.h>
-//#include "x.h"
 #include "server.h"
-//#include "my_irc.h"
 
-int		main(int ac, char **av)
+int		main()
 {
   t_server	serv;
 
@@ -25,8 +24,6 @@ int		main(int ac, char **av)
 		 &(serv.fd_write), 0, &(serv.timeout)) < 0)
 	printf("Error: select\n");
       read_all_fd(&serv);
-      //printf("Waiting\n");
     }
   return (0);
-  //return (TRUE);
 }

@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Thu Apr 24 16:49:41 2008 julian kirtz
-** Last update Sat Apr 26 22:30:19 2008 julian kirtz
+** Last update Sun Apr 27 13:54:19 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -16,11 +16,12 @@
 t_reply	t_rpl[] =
   {
     {RPL_NOTOPIC, reply_notopic},
+    {RPL_NAMREPLY, reply_namreply},
     {RPL_ENDOFNAMES, reply_endofnames},
     {0, 0}
   };
 
-void	reply_response(t_server *serv, int fd, char *numeric, void *info)
+int	reply_response(t_server *serv, int fd, char *numeric, void *info)
 {
   int	i;
   int	len;
@@ -58,4 +59,5 @@ void	reply_response(t_server *serv, int fd, char *numeric, void *info)
 	  serv->client[fd].buffer_write[i][len + 1] = '\n';
 	}
     }
+  return (0);
 }

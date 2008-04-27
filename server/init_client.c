@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Mon Apr 21 17:53:37 2008 julian kirtz
-** Last update Thu Apr 24 20:09:05 2008 julian kirtz
+** Last update Sun Apr 27 13:29:24 2008 julian kirtz
 */
 
 #include <string.h>

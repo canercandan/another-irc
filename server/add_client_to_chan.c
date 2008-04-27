@@ -5,12 +5,12 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:18:35 2008 julian kirtz
-** Last update Sat Apr 26 17:00:25 2008 julian kirtz
+** Last update Sun Apr 27 12:10:55 2008 julian kirtz
 */
 
 #include <sys/time.h>
 #include "server.h"
-#include "../x/x.h"
+#include "x.h"
 
 void		add_client_to_chan(t_server *serv, int fd, t_channel *chan)
 {

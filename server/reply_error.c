@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Thu Apr 24 21:56:59 2008 julian kirtz
-** Last update Sat Apr 26 17:29:34 2008 julian kirtz
+** Last update Sun Apr 27 13:50:19 2008 julian kirtz
 */
 
 #include <sys/time.h>
@@ -13,6 +13,9 @@
 
 void	reply_error(t_server *serv, int fd, t_message *msg)
 {
+  serv = 0;
+  fd = 0;
+  msg= 0;
   /*
     int	i;
   int	len;

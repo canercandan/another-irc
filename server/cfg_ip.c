@@ -5,10 +5,10 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 14:41:28 2008 julian kirtz
-** Last update Wed Apr 16 14:42:49 2008 julian kirtz
+** Last update Sun Apr 27 13:38:35 2008 julian kirtz
 */
 
 void	cfg_ip(void *foo)
 {
-  return;
+  foo = 0;
 }

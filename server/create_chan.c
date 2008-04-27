@@ -5,15 +5,15 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:28:32 2008 julian kirtz
-** Last update Sat Apr 26 17:08:39 2008 julian kirtz
+** Last update Sun Apr 27 12:28:12 2008 julian kirtz
 */
 
 #include <string.h>
 #include <sys/time.h>
 #include "server.h"
-#include "../x/x.h"
+#include "x.h"
 
-t_channel	*create_chan(t_server *serv, char *name)
+t_channel	*create_chan(char *name)
 {
   t_channel	*chan;
 

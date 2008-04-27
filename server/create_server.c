@@ -5,9 +5,11 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 11:54:59 2008 julian kirtz
-** Last update Sat Apr 26 17:17:21 2008 julian kirtz
+** Last update Sun Apr 27 13:28:20 2008 julian kirtz
 */
 
+#include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <string.h>
 #include <sys/types.h>
@@ -29,7 +31,7 @@ void			create_server(t_server *serv)
       exit (-1);
     }
   cfg_port(serv->port);
-  cfg_ip(serv->ip);
+  /*cfg_ip(serv->ip);*/
   cfg_timeout(&(serv->timeout));
   cfg_key(&(serv->key));
   nb_port = count_nb_port(serv->port);
@@ -38,7 +40,7 @@ void			create_server(t_server *serv)
       s = socket(PF_INET, SOCK_STREAM, 0);
       sin.sin_family = AF_INET;
       sin.sin_port = htons(serv->port[i]);
-      sin.sin_addr.s_addr = INADDR_ANY; //voir pour utiliser les ip du fichier de conf
+      sin.sin_addr.s_addr = INADDR_ANY; /*voir pour utiliser les ip du fichier de conf*/
       bind(s, (struct sockaddr *)&sin, sizeof(sin));
       listen(s, MAX_LISTEN);
       printf("Listen on port: %d\n", serv->port[i]);

@@ -5,9 +5,10 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Thu Apr 24 15:42:19 2008 julian kirtz
-** Last update Thu Apr 24 15:43:36 2008 julian kirtz
+** Last update Sun Apr 27 13:28:43 2008 julian kirtz
 */
 
+#include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/time.h>

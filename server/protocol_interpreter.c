@@ -5,9 +5,11 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Tue Apr 22 13:17:43 2008 julian kirtz
-** Last update Thu Apr 24 17:47:41 2008 julian kirtz
+** Last update Sun Apr 27 13:47:43 2008 julian kirtz
 */
 
+#include <stdlib.h>
+#include <stdio.h>
 #include <sys/time.h>
 #include "server.h"
 
@@ -16,11 +18,6 @@ void		protocol_interpreter(t_server *serv, int fd)
   char		amsg[512];
   t_message	msg;
   int		i;
-
-
-  //  char		*debug;
-  //  snprintf(debug, serv->client[fd].buffer_offset, "buffer: [%s]\n", serv->client[fd].buffer_read);
-  //  printf("len:%d debug: [%s]\n", serv->client[fd].buffer_offset, serv->client[fd].buffer_read);
 
   get_next_message(serv->client[fd].buffer_read, amsg,
 		   &(serv->client[fd].buffer_offset));
@@ -40,5 +37,5 @@ void		protocol_interpreter(t_server *serv, int fd)
       get_next_message(serv->client[fd].buffer_read, amsg,
 		       &(serv->client[fd].buffer_offset));
     }
-  write(1, "Ok\n", 3);
+  printf("Ok\n");
 }

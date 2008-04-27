@@ -5,9 +5,10 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Mon Apr 21 11:44:02 2008 julian kirtz
-** Last update Thu Apr 24 15:43:24 2008 julian kirtz
+** Last update Sun Apr 27 12:17:51 2008 julian kirtz
 */
 
+#include <unistd.h>
 #include <sys/time.h>
 #include "server.h"
 
@@ -21,5 +22,4 @@ void	client_socket_read(t_server *serv, int fd)
     protocol_interpreter(serv, fd);
   else
     delete_client(serv, fd);
-  //  printf("end\n");
 }

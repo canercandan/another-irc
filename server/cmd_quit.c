@@ -5,9 +5,10 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Thu Apr 24 20:53:51 2008 julian kirtz
-** Last update Sat Apr 26 17:51:48 2008 julian kirtz
+** Last update Sun Apr 27 12:26:52 2008 julian kirtz
 */
 
+#include <stdio.h>
 #include <sys/time.h>
 #include "server.h"
 
@@ -23,8 +24,9 @@ void	cmd_quit(t_server *serv, int fd, t_message *msg)
 {
   char	text[CLIENT_READ_BUF_SIZE];
 
-  snprintf(text, CLIENT_READ_BUF_SIZE, TEXT_ERROR_FORMAT,
+  msg = 0;
+  snprintf(text, CLIENT_READ_BUF_SIZE, ERROR_FORMAT,
 	   serv->hostname, serv->client[fd].nick);
-  //reply_error(serv, fd, ERROR, text);
+  /*reply_error(serv, fd, ERROR, text);*/
   delete_client(serv, fd);
 }

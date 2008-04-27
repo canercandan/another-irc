@@ -5,9 +5,10 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 17:10:02 2008 julian kirtz
-** Last update Thu Apr 24 20:07:00 2008 julian kirtz
+** Last update Sun Apr 27 13:57:23 2008 julian kirtz
 */
 
+#include <stdio.h>
 #include <sys/time.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -17,7 +18,7 @@ void			server_socket_read(t_server *serv, int fd)
 {
   int			cs;
   struct sockaddr_in	client_sin;
-  int			client_sin_len;
+  unsigned int		client_sin_len;
 
   printf("New Client !\n");
   client_sin_len = sizeof(client_sin);

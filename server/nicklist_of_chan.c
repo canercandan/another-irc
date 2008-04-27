@@ -5,13 +5,16 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 21:44:34 2008 julian kirtz
-** Last update Sat Apr 26 22:49:13 2008 julian kirtz
+** Last update Sun Apr 27 13:46:14 2008 julian kirtz
 */
 
+#include <stdio.h>
+#include <string.h>
 #include <sys/time.h>
 #include "server.h"
+#include "x.h"
 
-char *nicklist_of_chan(t_channel *chan)
+char		*nicklist_of_chan(t_channel *chan)
 {
   t_list	*current;
   char		*nick;
@@ -25,8 +28,8 @@ char *nicklist_of_chan(t_channel *chan)
       nick = ((t_client *)current->data)->nick;
       if (nicklist)
 	len = strlen(nicklist);
-      nicklist = xrealloc(sizeof(char) * (len + strnlen(nick, MAX_CHAN_LEN) + 1));
-      sprintf(nicklist + len, "");
+      nicklist = xrealloc(nicklist, sizeof(char) * (len + strlen(nick) + 1));
+      sprintf(nicklist + len, "%s ", nick);
       current = current->next;
     }
   return (nicklist);

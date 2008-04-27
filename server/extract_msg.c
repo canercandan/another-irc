@@ -5,12 +5,13 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Tue Apr 22 18:32:32 2008 julian kirtz
-** Last update Thu Apr 24 18:47:22 2008 julian kirtz
+** Last update Sun Apr 27 13:49:07 2008 julian kirtz
 */
 
+#include <stdio.h>
 #include <sys/time.h>
 #include "server.h"
-#include "../x/x.h"
+#include "x.h"
 
 void	skip_space(char **amsg)
 {
@@ -34,7 +35,10 @@ void	extract_prefix(char **amsg, t_message *msg)
 	  msg->prefix = xmalloc(sizeof(char) * (i + 1));
 	  i = 0;
 	  while ((*amsg)[i] && (*amsg)[i] != SP)
-	    msg->prefix[i] = (*amsg)[i++];
+	    {
+	      msg->prefix[i] = (*amsg)[i];
+	      i++;
+	    }
 	  msg->prefix[i] = '\0';
 	  *amsg += i;
 	}
@@ -55,7 +59,10 @@ void	extract_command(char **amsg, t_message *msg)
       msg->command = xmalloc(sizeof(char) * (i + 1));
       i = 0;
       while ((*amsg)[i] && (*amsg)[i] != SP)
-	msg->command[i] = (*amsg)[i++];
+	{
+	  msg->command[i] = (*amsg)[i];
+	  i++;
+	}
       msg->command[i] = '\0';
       *amsg += i;
     }
@@ -78,7 +85,10 @@ void	middle_param(char **amsg, t_message *msg, int count)
       i = 0;
       while ((*amsg)[i] && (*amsg)[i] != '\r' && (*amsg)[i] != '\n'
 	     && (*amsg)[i] != ' ')
-	msg->param[count][i] = (*amsg)[i++];
+	{
+	  msg->param[count][i] = (*amsg)[i];
+	  i++;
+	}
       msg->param[count][i] = '\0';
       *amsg += i;
     }
@@ -97,7 +107,10 @@ void	trailing_param(char **amsg, t_message *msg, int count)
       msg->param[count] = xmalloc(sizeof(char) * (i + 1));
       i = 0;
       while ((*amsg)[i] && (*amsg)[i] != '\r' && (*amsg)[i] != '\n')
-	msg->param[count][i] = (*amsg)[i++];
+	{
+	  msg->param[count][i] = (*amsg)[i];
+	  i++;
+	}
       msg->param[count][i] = '\0';
       *amsg += i;
     }
