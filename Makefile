@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Sun Apr 27 13:59:55 2008 julian kirtz
+## Last update Sun Apr 27 14:43:17 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -116,7 +116,6 @@ clean		:
 fclean		:	clean
 			$(RM) $(BIN_SRV)
 			$(RM) $(BIN_CLI)
-			$(RM) $(PATH_BIN)
 
 re		:	fclean all
 

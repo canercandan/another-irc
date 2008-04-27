@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 10:33:19 2008 caner candan
-** Last update Sun Apr 27 13:44:05 2008 caner candan
+** Last update Sun Apr 27 14:35:31 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -16,7 +16,7 @@ void		init_dialog(void *btn, void *xml)
 {
   GtkWidget	*widget;
 
-  if (!connect_to_server(xml))
+  if (connect_to_server(xml) < 0)
     {
       widget = glade_xml_get_widget(GLADE_XML(xml), LOGIN_ERROR);
       gtk_widget_show(widget);
