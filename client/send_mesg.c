@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat Apr 26 22:28:07 2008 caner candan
-** Last update Sun Apr 27 15:41:15 2008 caner candan
+** Last update Sun Apr 27 19:03:58 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -17,9 +17,10 @@ void		send_mesg(void *btn, void *xml)
 {
   GtkWidget	*nick;
   GtkWidget	*entry;
-  GtkWidget	*mesg;
+  GtkWidget	*widget;
   void		*nick_value;
   void		*entry_value;
+  GtkAdjustment	*adj;
 
   nick = glade_xml_get_widget(GLADE_XML(xml), LOGIN_NICK);
   nick_value = (void *) gtk_entry_get_text(GTK_ENTRY(nick));
@@ -27,9 +28,13 @@ void		send_mesg(void *btn, void *xml)
   entry_value = (void *) gtk_entry_get_text(GTK_ENTRY(entry));
   if (strcmp(entry_value, EMPTY))
     {
-      mesg = glade_xml_get_widget(xml, MESG_VIEW);
-      insert_mesg_to_list(mesg, EMPTY, nick_value, entry_value);
+      widget = glade_xml_get_widget(xml, MESG_VIEW);
+      insert_mesg_to_list(widget, EMPTY, nick_value, entry_value);
+      widget = glade_xml_get_widget(GLADE_XML(xml), SCROLL_MESG);
+      adj = gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW(widget));
+      gtk_adjustment_set_value(adj, adj->upper);
+      gtk_scrolled_window_set_vadjustment(GTK_SCROLLED_WINDOW(widget), adj);
     }
   gtk_entry_set_text(GTK_ENTRY(entry), EMPTY);
-  gtk_widget_grab_focus(entry);
+  gtk_widget_grab_focus(GTK_WIDGET(entry));
 }

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 10:33:19 2008 caner candan
-** Last update Sun Apr 27 15:38:11 2008 caner candan
+** Last update Sun Apr 27 16:02:06 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -20,9 +20,8 @@ static void	ok_connection(void *xml)
   connect_btn_dialog(xml);
   widget = glade_xml_get_widget(GLADE_XML(xml), LOGIN_WINDOW);
   gtk_widget_hide(widget);
+  widget_connected(xml, DIALOG_WINDOW, DELETE_EVENT, gtk_main_quit);
   widget = glade_xml_get_widget(GLADE_XML(xml), DIALOG_WINDOW);
-  g_signal_connect(G_OBJECT(widget), DELETE_EVENT,
-		   G_CALLBACK(gtk_main_quit), NULL);
   gtk_widget_show(widget);
 }
 

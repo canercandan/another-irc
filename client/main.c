@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat Apr 26 17:06:02 2008 caner candan
-** Last update Sun Apr 27 10:34:16 2008 caner candan
+** Last update Sun Apr 27 15:57:28 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -15,16 +15,12 @@
 int		main(int ac, char **av)
 {
   GladeXML	*xml;
-  GtkWidget	*widget;
   GtkWidget	*user_view;
   GtkWidget	*mesg_view;
 
   gtk_init(&ac, &av);
   xml = glade_xml_new(XML_FILE, NULL, NULL);
-  widget = glade_xml_get_widget(xml, LOGIN_WINDOW);
-  g_signal_connect(G_OBJECT(widget), DELETE_EVENT,
-		   G_CALLBACK(gtk_main_quit), NULL);
-  gtk_widget_show(widget);
+  widget_connected(xml, LOGIN_WINDOW, DELETE_EVENT, gtk_main_quit);
   user_view = glade_xml_get_widget(xml, USERS_VIEW);
   init_user_list(user_view);
   mesg_view = glade_xml_get_widget(xml, MESG_VIEW);
