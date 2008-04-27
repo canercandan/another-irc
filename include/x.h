@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 15:42:08 2008 caner candan
-** Last update Sun Apr 27 11:55:12 2008 caner candan
+** Last update Sun Apr 27 12:15:03 2008 caner candan
 */
 
 #ifndef __X_H__
@@ -24,7 +24,6 @@
 # define FALSE		-1
 # define TRUE		00
 # define WAIT		01
-# define ERROR		02
 # define QUIT		03
 # define EMPTY		04
 # define DENIED		05
