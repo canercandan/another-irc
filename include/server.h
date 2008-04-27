@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 14:48:23 2008 julian kirtz
-** Last update Sun Apr 27 13:55:40 2008 julian kirtz
+** Last update Sun Apr 27 17:34:53 2008 julian kirtz
 */
 
 #ifndef __SERVER_H__
@@ -137,6 +137,7 @@ typedef struct		s_server
 }			t_server;
 
 void		add_client_to_chan(t_server *serv, int fd, t_channel *chan);
+void		broadcast_command(t_server *serv, int fd, t_channel *chan, t_message *msg);
 void		cfg_ip(void *foo);
 void		cfg_key(char **key);
 void		cfg_port(int *port);
@@ -149,7 +150,7 @@ void		cmd_pass(t_server *serv, int fd, t_message *msg);
 void		cmd_quit(t_server *serv, int fd, t_message *msg);
 void		cmd_user(t_server *serv, int fd, t_message *msg);
 int		count_nb_port(int *port);
-t_channel	*create_chan(char *name);
+t_channel	*create_chan(t_server *serv, char *name);
 void		create_server(t_server *serv);
 void		delete_client(t_server *serv, int fd);
 void		do_command(t_server *serv, int fd, t_message *msg);

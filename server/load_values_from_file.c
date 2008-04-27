@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 13:26:02 2008 julian kirtz
-** Last update Sun Apr 27 13:39:33 2008 julian kirtz
+** Last update Sun Apr 27 18:37:21 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -30,7 +30,7 @@ char	*load_values_from_file(char *item, char *file)
 	*sp = '\0';
       if (strcmp(item, str) == 0 && strlen(sp + 1))
 	{
-	  value = xmalloc(sizeof(char) * (strlen(sp + 1) + 1));
+	  value = xmalloc(sizeof(*value) * (strlen(sp + 1) + 1));
 	  value = strcpy(value, sp + 1);
 	  printf("Value: [%s]\n", value);
 	  break;

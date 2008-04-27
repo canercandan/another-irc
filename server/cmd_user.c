@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Thu Apr 24 13:51:49 2008 julian kirtz
-** Last update Thu Apr 24 20:42:52 2008 julian kirtz
+** Last update Sun Apr 27 16:15:55 2008 julian kirtz
 */
 
 #include <string.h>
@@ -16,7 +16,7 @@ void	cmd_user(t_server *serv, int fd, t_message *msg)
 {
   if (serv->client[fd].registered)
     reply_response(serv, fd, ERR_ALREADYREGISTRED, 0);
-  else if (!(serv->client[fd].keyed) || !(serv->client[fd].nick))
+  else if (!(serv->client[fd].keyed) || !(serv->client[fd].nick[0]))
     delete_client(serv, fd);
   else if (msg->param_count < 4)
     reply_response(serv, fd, ERR_NEEDMOREPARAMS, 0);

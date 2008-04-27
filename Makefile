@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Sun Apr 27 14:43:17 2008 caner candan
+## Last update Sun Apr 27 17:40:10 2008 julian kirtz
 ##
 
 NAME_SRV	=	server
@@ -38,6 +38,7 @@ SRCS_X		=	$(PATH_X)xaccept.c		\
 			$(PATH_X)xfork.c
 
 SRCS_SRV	=	$(PATH_SRV)add_client_to_chan.c \
+			$(PATH_SRV)broadcast_command.c \
 			$(PATH_SRV)cfg_ip.c \
 			$(PATH_SRV)cfg_key.c \
 			$(PATH_SRV)cfg_port.c \
@@ -116,6 +117,7 @@ clean		:
 fclean		:	clean
 			$(RM) $(BIN_SRV)
 			$(RM) $(BIN_CLI)
+			$(RM) $(PATH_BIN)
 
 re		:	fclean all
 

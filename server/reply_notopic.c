@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 19:39:05 2008 julian kirtz
-** Last update Sun Apr 27 13:53:52 2008 julian kirtz
+** Last update Sun Apr 27 15:03:29 2008 julian kirtz
 */
 
 #include <string.h>
@@ -18,7 +18,7 @@ int	reply_notopic(t_server *serv, int fd, int index, void *chan)
   int	len;
 
   len = strlen(serv->client[fd].buffer_write[index]);
-  snprintf(serv->client[fd].buffer_write[index], CLIENT_READ_BUF_SIZE - len,
+  snprintf(serv->client[fd].buffer_write[index] + len, CLIENT_READ_BUF_SIZE - len,
 	   RPL_NOTOPIC_FORMAT, ((t_channel *)chan)->name);
   return (0);
 }

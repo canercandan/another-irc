@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 20:12:46 2008 julian kirtz
-** Last update Sun Apr 27 13:51:44 2008 julian kirtz
+** Last update Sun Apr 27 15:46:00 2008 julian kirtz
 */
 
 #include <stdlib.h>
@@ -23,9 +23,7 @@ char	*part_of_nicklist(char *nicklist, int *offset, int max)
   i = *offset;
   while (1)
     {
-      if (nicklist[i] == '\0')
-	return (0);
-      if (i == max)
+      if (i >= max)
 	{
 	  nicklist[*offset] = '\0';
 	  (*offset)++;
@@ -51,16 +49,21 @@ int	reply_namreply(t_server *serv, int fd, int index, void *chan)
       nicklist = nicklist_of_chan(chan);
     }
   len = strlen(serv->client[fd].buffer_write[index]);
-  nicklistpart = part_of_nicklist(nicklist, &offset,
-				  CLIENT_WRITE_BUF_SIZE - len - 2);
-  if (nicklistpart)
-    sprintf(serv->client[fd].buffer_write[index],
-	    RPL_NAMREPLY_FORMAT, ((t_channel *)chan)->name, nicklistpart);
+  if (strlen(nicklist + offset) >
+      (unsigned int)(CLIENT_WRITE_BUF_SIZE - len - 2))
+    {
+      nicklistpart = part_of_nicklist(nicklist, &offset,
+				      CLIENT_WRITE_BUF_SIZE - len - 2);
+      sprintf(serv->client[fd].buffer_write[index] + len,
+	      RPL_NAMREPLY_FORMAT, ((t_channel *)chan)->name, nicklistpart);
+      return (1);
+    }
   else
     {
+      sprintf(serv->client[fd].buffer_write[index] + len,
+	      RPL_NAMREPLY_FORMAT, ((t_channel *)chan)->name, nicklist);
       free(nicklist);
       nicklist = 0;
       return (0);
     }
-  return (1);
 }

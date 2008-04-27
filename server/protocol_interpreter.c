@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Tue Apr 22 13:17:43 2008 julian kirtz
-** Last update Sun Apr 27 13:47:43 2008 julian kirtz
+** Last update Sun Apr 27 18:45:04 2008 julian kirtz
 */
 
 #include <stdlib.h>
@@ -29,11 +29,11 @@ void		protocol_interpreter(t_server *serv, int fd)
       printf("\textract command: %s\n", msg.command);
       for (i = 0; msg.param[i]; i++)
 	printf("\textract param%d: %s\n", i, msg.param[i]);
+      do_command(serv, fd, &msg);
       free(msg.prefix);
       free(msg.command);
       for (i = 0; msg.param[i]; i++)
 	free(msg.param[i]);
-      do_command(serv, fd, &msg);
       get_next_message(serv->client[fd].buffer_read, amsg,
 		       &(serv->client[fd].buffer_offset));
     }

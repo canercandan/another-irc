@@ -5,9 +5,10 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 12:04:03 2008 julian kirtz
-** Last update Sun Apr 27 12:30:57 2008 julian kirtz
+** Last update Sun Apr 27 18:54:47 2008 julian kirtz
 */
 
+#include <stdio.h>
 #include <sys/time.h>
 #include "server.h"
 
@@ -100,12 +101,18 @@ void	cmd_join(t_server *serv, int fd, t_message *msg)
 	      if (!check_key(chan, chan_index, msg->param[1]))
 		reply_response(serv, fd, ERR_BADCHANNELKEY, 0);
 	      else if (!user_in_chan(serv, fd, chan))
-		add_client_to_chan(serv, fd, chan);
+		{
+		  add_client_to_chan(serv, fd, chan);
+		  broadcast_command(serv, fd, chan, msg);
+		  reply_response(serv, fd, RPL_NAMREPLY, chan);
+		  reply_response(serv, fd, RPL_ENDOFNAMES, chan);
+		}
 	    }
 	  else
 	    {
-	      chan = create_chan(chan_name);
+	      chan = create_chan(serv, chan_name);
 	      add_client_to_chan(serv, fd, chan);
+	      broadcast_command(serv, fd, chan, msg);
 	      reply_response(serv, fd, RPL_NOTOPIC, chan);
 	      reply_response(serv, fd, RPL_NAMREPLY, chan);
 	      reply_response(serv, fd, RPL_ENDOFNAMES, chan);

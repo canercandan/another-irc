@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Tue Apr 22 18:32:32 2008 julian kirtz
-** Last update Sun Apr 27 13:49:07 2008 julian kirtz
+** Last update Sun Apr 27 18:38:35 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -32,7 +32,7 @@ void	extract_prefix(char **amsg, t_message *msg)
 	i++;
       if (i)
 	{
-	  msg->prefix = xmalloc(sizeof(char) * (i + 1));
+	  msg->prefix = xmalloc(sizeof(*(msg->prefix)) * (i + 1));
 	  i = 0;
 	  while ((*amsg)[i] && (*amsg)[i] != SP)
 	    {
@@ -56,7 +56,7 @@ void	extract_command(char **amsg, t_message *msg)
     i++;
   if (i)
     {
-      msg->command = xmalloc(sizeof(char) * (i + 1));
+      msg->command = xmalloc(sizeof(*(msg->command)) * (i + 1));
       i = 0;
       while ((*amsg)[i] && (*amsg)[i] != SP)
 	{
@@ -81,7 +81,7 @@ void	middle_param(char **amsg, t_message *msg, int count)
       while ((*amsg)[i] && (*amsg)[i] != '\r' && (*amsg)[i] != '\n'
 	     && (*amsg)[i] != ' ')
 	i++;
-      msg->param[count] = xmalloc(sizeof(char) * (i + 1));
+      msg->param[count] = xmalloc(sizeof(*(msg->param[count])) * (i + 1));
       i = 0;
       while ((*amsg)[i] && (*amsg)[i] != '\r' && (*amsg)[i] != '\n'
 	     && (*amsg)[i] != ' ')
@@ -104,7 +104,7 @@ void	trailing_param(char **amsg, t_message *msg, int count)
     i++;
   if (i)
     {
-      msg->param[count] = xmalloc(sizeof(char) * (i + 1));
+      msg->param[count] = xmalloc(sizeof(*(msg->param[count])) * (i + 1));
       i = 0;
       while ((*amsg)[i] && (*amsg)[i] != '\r' && (*amsg)[i] != '\n')
 	{
