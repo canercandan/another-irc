@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat Apr 26 22:26:38 2008 caner candan
-** Last update Sun Apr 27 10:20:36 2008 caner candan
+** Last update Sun Apr 27 19:49:13 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -16,6 +16,7 @@ void		about(void *btn, void *xml)
 {
   GtkWidget	*widget;
 
+  (void)btn;
   widget = glade_xml_get_widget(GLADE_XML(xml), ABOUT_WINDOW);
   g_signal_connect(G_OBJECT(widget), DELETE_EVENT,
 		   G_CALLBACK(gtk_widget_hide), NULL);

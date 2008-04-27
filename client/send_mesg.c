@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat Apr 26 22:28:07 2008 caner candan
-** Last update Sun Apr 27 19:03:58 2008 caner candan
+** Last update Sun Apr 27 19:48:44 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -22,6 +22,7 @@ void		send_mesg(void *btn, void *xml)
   void		*entry_value;
   GtkAdjustment	*adj;
 
+  (void)btn;
   nick = glade_xml_get_widget(GLADE_XML(xml), LOGIN_NICK);
   nick_value = (void *) gtk_entry_get_text(GTK_ENTRY(nick));
   entry = glade_xml_get_widget(GLADE_XML(xml), DIALOG_ENTRY);

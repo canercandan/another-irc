@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 10:33:19 2008 caner candan
-** Last update Sun Apr 27 16:02:06 2008 caner candan
+** Last update Sun Apr 27 19:49:51 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -27,6 +27,7 @@ static void	ok_connection(void *xml)
 
 void		init_dialog(void *btn, void *xml)
 {
+  (void)btn;
   if (check_entry(xml, LOGIN_CHAN, BCHAN) < 0 ||
       check_entry(xml, LOGIN_CHAN, EMPTY) < 0)
     error_login(xml, ERR_CHAN);

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 13:38:11 2008 caner candan
-** Last update Sun Apr 27 19:07:12 2008 caner candan
+** Last update Sun Apr 27 19:50:11 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -29,8 +29,10 @@ int		connect_to_server(void *xml)
   if (create_socket(&cnt) < 0)
     return (-1);
   listen_from_server(xml, &cnt);
-  send_to_server(xml, &cnt, NULL);
-  //listen_from_server(xml, &cnt);
+  /*
+    send_to_server(xml, &cnt, NULL);
+  listen_from_server(xml, &cnt);
+  */
   cnt.chan = return_widget(xml, LOGIN_CHAN);
   cnt.nick = return_widget(xml, LOGIN_NICK);
   if (check_entry(xml, LOGIN_REAL, EMPTY) < 0)
