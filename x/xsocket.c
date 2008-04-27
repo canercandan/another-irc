@@ -1,11 +1,11 @@
 /*
-** xsocket.c for my_irc in /home/candan_c/rendu/project/my_irc
+** xsocket.c for x in /home/candan_c/cu/rendu/project/my_irc/include
 ** 
 ** Made by caner candan
 ** Login   <candan_c@epitech.net>
 ** 
-** Started on  Thu Apr  3 09:24:30 2008 caner candan
-** Last update Tue Apr 15 00:33:16 2008 caner candan
+** Started on  Sun Apr 27 11:48:00 2008 caner candan
+** Last update Sun Apr 27 11:48:00 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "my_irc.h"
+#include "x.h"
 
 int	xsocket(int domain, int type, int protocol)
 {
@@ -21,7 +21,7 @@ int	xsocket(int domain, int type, int protocol)
 
   if ((s = socket(domain, type, protocol)) < 0)
     {
-      fprintf(stderr, "server - error with socket()\n");
+      fprintf(stderr, "Error with socket()\n");
       close(s);
       exit(FALSE);
     }

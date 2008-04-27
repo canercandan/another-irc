@@ -1,65 +1,90 @@
 ##
-## Makefile for my_irc in /home/candan_c/cu/rendu/project/my_irc
+## Makefile for make in /home/candan_c/cu/rendu/test/make
 ## 
 ## Made by caner candan
 ## Login   <candan_c@epitech.net>
 ## 
-## Started on  Tue Apr 15 00:09:44 2008 caner candan
-## Last update Tue Apr 15 11:18:44 2008 caner candan
+## Started on  Tue Apr 15 11:19:53 2008 caner candan
+## Last update Sun Apr 27 11:55:33 2008 caner candan
 ##
 
-OBJ_PATH	=	obj
+NAME_SRV	=	server
+NAME_CLI	=	client
+NAME_X		=	x
+NAME_BIN	=	bin
+NAME_OBJ	=	obj
 
-X_PATH		=	x
-X_SRC		=	$(X_PATH)/xaccept.c	\
-			$(X_PATH)/xbind.c	\
-			$(X_PATH)/xconnect.c	\
-			$(X_PATH)/xlisten.c	\
-			$(X_PATH)/xrecv.c	\
-			$(X_PATH)/xsend.c	\
-			$(X_PATH)/xsocket.c
+PATH_SRV	=	$(NAME_SRV)/
+PATH_CLI	=	$(NAME_CLI)/
+PATH_X		=	$(NAME_X)/
+PATH_BIN	=	$(NAME_BIN)/
+PATH_OBJ	=	$(NAME_OBJ)/
 
-X_OBJ		=	$(X_SRC:.c=.o)
+BIN_SRV		=	$(PATH_BIN)$(NAME_SRV)
+BIN_CLI		=	$(PATH_BIN)$(NAME_CLI)
 
-SRV		=	server
-SRV_SRC		=	$(SRV)/main.c
+SRCS_X		=	$(PATH_X)xaccept.c		\
+			$(PATH_X)xbind.c		\
+			$(PATH_X)xconnect.c		\
+			$(PATH_X)xgethostbyname.c	\
+			$(PATH_X)xlisten.c		\
+			$(PATH_X)xmalloc.c		\
+			$(PATH_X)xrealloc.c		\
+			$(PATH_X)xopen.c		\
+			$(PATH_X)xclose.c		\
+			$(PATH_X)xrecv.c		\
+			$(PATH_X)xsend.c		\
+			$(PATH_X)xsocket.c		\
+			$(PATH_X)xfork.c
 
-SRV_OBJ		=	$(SRV_SRC:.c=.o) $(X_OBJ)
+SRCS_SRV	=	$(PATH_SRV)main.c
 
-CLI		=	client
-CLI_SRC		=	$(CLI)/main.c
+SRCS_CLI	=	$(PATH_CLI)main.c
 
-CLI_OBJ		=	$(CLI_SRC:.c=.o) $(X_OBJ)
+OBJS_X		=	$(SRCS_X:.c=.o)
+OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
+OBJS_CLI	=	$(SRCS_CLI:.c=.o) $(OBJS_X)
+
+INCLUDES	=	-I./include
+LIBRARY		=	-L.
+
+CFLAGS		=	$(INCLUDES) -g -Wall -W -Werror -pedantic -ansi
+LDFLAGS		=	$(LIBRARY)
 
 CC		=	gcc
 RM		=	rm -rf
+RM_O		=	find . -name '*.o' -exec rm {} \;
+RM_TILD		=	find . -name '*~' -exec rm {} \;
 MK		=	make
+MKD		=	mkdir -p
 
-INCLUDES	=	-I./include
-CFLAGS		=	$(INCLUDES) -g -Wall -W
-
-.c.o		:
-			@$(CC) -c $< -o $@
+.SUFFIXES	:	.c.o
 
 all		:
-			@$(MK) $(SRV)
-			@$(MK) $(CLI)
+			@$(MKD) $(PATH_SRV)
+			@$(MKD) $(PATH_CLI)
+			@$(MKD) $(PATH_BIN)
+			@$(MK) $(BIN_SRV)
+			@$(MK) $(BIN_CLI)
 
-$(SRV)		:	$(SRV_OBJ)
-			@$(CC) -o $(SRV)/$(SRV) $(SRV_OBJ)
+$(BIN_SRV)	:	$(OBJS_SRV)
+			@$(CC) -o $@ $(OBJS_SRV) $(LDFLAGS)
 
-$(CLI)		:	$(CLI_OBJ)
-			@$(CC) -o $(SRV)/$(SRV) $(CLI_OBJ)
+$(BIN_CLI)	:	$(OBJS_CLI)
+			@$(CC) -o $@ $(OBJS_CLI) $(LDFLAGS)
 
 clean		:
-			$(RM) *~
-			$(RM) *.o
-			$(RM) *.core
+			@$(RM_O)
+			@$(RM_TILD)
 
 fclean		:	clean
-			$(RM) $(SRV)/$(SRV)
-			$(RM) $(CLI)/$(SRV)
+			$(RM) $(BIN_SRV)
+			$(RM) $(BIN_CLI)
+			$(RM) $(PATH_BIN)
 
 re		:	fclean all
 
 .PHONY		:	all clean fclean re
+
+.c.o		:
+			$(CC) $(CFLAGS) -c $< -o $@ $(LDFLAGS)

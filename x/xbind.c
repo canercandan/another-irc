@@ -1,11 +1,11 @@
 /*
-** xbind.c for my_irc in /home/candan_c/rendu/project/my_irc
+** xbind.c for x in /home/candan_c/cu/rendu/project/my_irc/include
 ** 
 ** Made by caner candan
 ** Login   <candan_c@epitech.net>
 ** 
-** Started on  Thu Apr  3 09:27:50 2008 caner candan
-** Last update Tue Apr 15 00:29:24 2008 caner candan
+** Started on  Sun Apr 27 11:48:26 2008 caner candan
+** Last update Sun Apr 27 11:48:27 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "my_irc.h"
+#include "x.h"
 
 int	xbind(int s, const void *addr, void *addrlen)
 {

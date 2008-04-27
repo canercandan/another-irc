@@ -1,11 +1,11 @@
 /*
-** xlisten.c for my_irc in /home/candan_c/rendu/project/my_irc
+** xlisten.c for x in /home/candan_c/cu/rendu/project/my_irc/include
 ** 
 ** Made by caner candan
 ** Login   <candan_c@epitech.net>
 ** 
-** Started on  Thu Apr  3 09:34:47 2008 caner candan
-** Last update Tue Apr 15 00:32:53 2008 caner candan
+** Started on  Sun Apr 27 11:47:23 2008 caner candan
+** Last update Sun Apr 27 11:47:24 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "my_irc.h"
+#include "x.h"
 
 int	xlisten(int s, int backlog)
 {

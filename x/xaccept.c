@@ -1,11 +1,11 @@
 /*
-** xaccept.c for my_irc in /home/candan_c/rendu/project/my_irc
+** xaccept.c for x in /home/candan_c/cu/rendu/project/my_irc/include
 ** 
 ** Made by caner candan
 ** Login   <candan_c@epitech.net>
 ** 
-** Started on  Thu Apr  3 09:37:35 2008 caner candan
-** Last update Tue Apr 15 00:29:35 2008 caner candan
+** Started on  Sun Apr 27 11:48:32 2008 caner candan
+** Last update Sun Apr 27 11:48:33 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "my_irc.h"
+#include "x.h"
 
 int	xaccept(int s, void *addr, void *addrlen)
 {

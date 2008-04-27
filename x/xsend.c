@@ -1,11 +1,11 @@
 /*
-** xsend.c for my_irc in /home/candan_c/rendu/project/my_irc
+** xsend.c for x in /home/candan_c/cu/rendu/project/my_irc/include
 ** 
 ** Made by caner candan
 ** Login   <candan_c@epitech.net>
 ** 
-** Started on  Thu Apr  3 09:51:31 2008 caner candan
-** Last update Tue Apr 15 00:33:08 2008 caner candan
+** Started on  Sun Apr 27 11:47:54 2008 caner candan
+** Last update Sun Apr 27 11:47:54 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -13,13 +13,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "my_irc.h"
+#include "x.h"
 
-void	*xsend(int s, const void *msg, void *len, int flags)
+int	xsend(int s, const void *msg, int len, int flags)
 {
-  void	*rc;
+  int	rc;
 
-  if ((int) (rc = (void *) send(s, msg, (size_t) len, flags)) < 0)
+  if ((rc = send(s, msg, (size_t) len, flags)) < 0)
     {
       fprintf(stderr, "Error with send()\n");
       close(s);
