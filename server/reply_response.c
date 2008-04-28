@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Thu Apr 24 16:49:41 2008 julian kirtz
-** Last update Sun Apr 27 17:11:14 2008 julian kirtz
+** Last update Sun Apr 27 22:30:48 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -33,8 +33,8 @@ int	reply_response(t_server *serv, int fd, char *numeric, void *info)
     i++;
   if (i < CLIENT_WRITE_BUF_LINE)
     {
-      snprintf(serv->client[fd].buffer_write[i], CLIENT_WRITE_BUF_SIZE,
-	       ":%s %s %s ", serv->hostname, numeric, serv->client[fd].nick);
+      sprintf(serv->client[fd].buffer_write[i], ":%s %s %s ", serv->hostname,
+	      numeric, serv->client[fd].nick);
       if (info)
 	{
 	  for (j = 0; t_rpl[j].rpl != 0; j++)
@@ -42,24 +42,10 @@ int	reply_response(t_server *serv, int fd, char *numeric, void *info)
 	      ret = t_rpl[j].func(serv, fd, i, info);
 	  if (strcmp(numeric, RPL_NAMREPLY) == 0 && ret)
 	    reply_response(serv, fd, numeric, info);
-	  /*
-	  strcat(serv->client[fd].buffer_write[i], " ");
-	  strncat(serv->client[fd].buffer_write[i], text, CLIENT_WRITE_BUF_SIZE
-		  - strlen(serv->client[fd].buffer_write[i]));
-	  */
 	}
       len = strlen(serv->client[fd].buffer_write[i]);
-      printf("msg len: %d\n", len);
-      if (len > CLIENT_WRITE_BUF_SIZE - 2)
-	{
-	  serv->client[fd].buffer_write[i][CLIENT_WRITE_BUF_SIZE - 2] = '\r';
-	  serv->client[fd].buffer_write[i][CLIENT_WRITE_BUF_SIZE - 1] = '\n';
-	}
-      else
-	{
-	  serv->client[fd].buffer_write[i][len] = '\r';
-	  serv->client[fd].buffer_write[i][len + 1] = '\n';
-	}
+      serv->client[fd].buffer_write[i][len] = '\r';
+      serv->client[fd].buffer_write[i][len + 1] = '\n';
     }
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Tue Apr 22 18:32:32 2008 julian kirtz
-** Last update Sun Apr 27 18:38:35 2008 julian kirtz
+** Last update Sun Apr 27 22:49:42 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -136,7 +136,6 @@ void	extract_params(char **amsg, t_message *msg)
   if (**amsg)
     trailing_param(amsg, msg, (msg->param_count)++);
   count = msg->param_count;
-  printf("[%d]\n", count);
   while (count < MAX_CMD_PARAMS)
     msg->param[count++] = 0;
 }

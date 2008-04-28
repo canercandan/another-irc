@@ -5,28 +5,25 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Thu Apr 24 20:53:51 2008 julian kirtz
-** Last update Sun Apr 27 17:39:31 2008 julian kirtz
+** Last update Mon Apr 28 00:40:07 2008 julian kirtz
 */
 
 #include <stdio.h>
 #include <sys/time.h>
 #include "server.h"
 
-/*
-// attention, a tester: envoi du msg error
-// si la socket client est deja close
-// write bloquant
-// et le fd pourrait etre reatribuer a un autre client
-*/
-
-
-void	cmd_quit(t_server *serv, int fd, t_message *msg)
+void		cmd_quit(t_server *serv, int fd, t_message *msg)
 {
-  char	text[CLIENT_READ_BUF_SIZE];
+  t_list	*current;
 
-  msg = 0;
-  snprintf(text, CLIENT_READ_BUF_SIZE, ERROR_FORMAT,
-	   serv->hostname, serv->client[fd].nick);
-  /*reply_error(serv, fd, ERROR, text);*/
+  current = serv->client[fd].channel;
+  while (current)
+  {
+    if (delete_client_from_chan(&(serv->client[fd]), ((t_channel *)current->data)))
+      broadcast_command(serv, fd, ((t_channel *)current->data), msg);
+    else
+      delete_chan(serv, ((t_channel *)current->data));
+    current = current->next;
+  }
   delete_client(serv, fd);
 }

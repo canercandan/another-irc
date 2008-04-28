@@ -5,9 +5,10 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:28:32 2008 julian kirtz
-** Last update Sun Apr 27 18:31:35 2008 julian kirtz
+** Last update Mon Apr 28 00:07:16 2008 julian kirtz
 */
 
+#include <stdio.h>
 #include <string.h>
 #include <sys/time.h>
 #include "server.h"
@@ -28,7 +29,9 @@ t_channel	*create_chan(t_server *serv, char *name)
   chan->client = 0;
   channel = xmalloc(sizeof(*channel));
   channel->data = chan;
+  printf("New AddressOf chan: 0x%x\n", (unsigned int)chan);
   channel->next = serv->channel;
   serv->channel = channel;
+  printf("New AddressOf servchanlist: 0x%x\n", (unsigned int)serv->channel);
   return (chan);
 }

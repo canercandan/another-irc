@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 12:04:03 2008 julian kirtz
-** Last update Sun Apr 27 18:54:47 2008 julian kirtz
+** Last update Mon Apr 28 01:43:11 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -67,20 +67,7 @@ char	check_key(t_channel *chan, int chan_index, char *key_list)
   return (0);
 }
 
-char		user_in_chan(t_server *serv, int fd, t_channel *chan)
-{
-  t_list	*current;
-
-  current = serv->client[fd].channel;
-  while (current)
-    if ((t_channel *)current->data == chan)
-      return (1);
-    else
-      current = current->next;
-  return (0);
-}
-
-void	cmd_join(t_server *serv, int fd, t_message *msg)
+void		cmd_join(t_server *serv, int fd, t_message *msg)
 {
   char		chan_name[MAX_CHAN_LEN + 1];
   int		chan_index;

@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sun Apr 27 16:59:41 2008 julian kirtz
-** Last update Sun Apr 27 19:08:08 2008 julian kirtz
+** Last update Mon Apr 28 00:50:34 2008 julian kirtz
 */
 
 #include <stdlib.h>
@@ -32,7 +32,10 @@ void	broadcast_command(t_server *serv, int fd, t_channel *chan, t_message *msg)
       params = xrealloc(params, sizeof(char) * (len + strlen(msg->param[i]) + 1));
       sprintf(params + len, " %s", msg->param[i]);
     }
-  sprintf(bmsg, "%s!%s %s%s\r\n", serv->client[fd].nick, serv->hostname, msg->command, params);
+  if (params)
+    sprintf(bmsg, "%s!%s %s%s\r\n", serv->client[fd].nick, serv->hostname, msg->command, params);
+  else
+    sprintf(bmsg, "%s!%s %s noreason\r\n", serv->client[fd].nick, serv->hostname, msg->command);
   current = chan->client;
   while (current)
     {
