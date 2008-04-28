@@ -1,15 +1,15 @@
 /*
-** trim.c for my_ftp in /home/candan_c/rendu/project/my_ftp
+** trim.c for my_irc in /home/candan_c/cu/rendu/project/my_irc
 ** 
 ** Made by caner candan
 ** Login   <candan_c@epitech.net>
 ** 
-** Started on  Thu Apr  3 20:37:42 2008 caner candan
-** Last update Sat Apr 12 12:19:52 2008 caner candan
+** Started on  Mon Apr 28 05:10:16 2008 caner candan
+** Last update Mon Apr 28 05:12:56 2008 caner candan
 */
 
 #include <string.h>
-#include "my_ftp.h"
+#include "client.h"
 
 char	*trim(char *s)
 {

@@ -5,28 +5,37 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 10:33:19 2008 caner candan
-** Last update Mon Apr 28 05:08:35 2008 caner candan
+** Last update Mon Apr 28 05:58:49 2008 caner candan
 */
 
 #include <gtk/gtk.h>
 #include <glade/glade.h>
-#include <stdio.h>
-#include <strings.h>
+#include <stdlib.h>
 #include "client.h"
 #include "x.h"
 
 static gboolean	listen_from_server(GIOChannel *io, GIOCondition condition,
 				   void *cnt)
 {
-  char		buf[512];
-  int		nbr;
+  gchar		*buf;
+  gsize		nbr;
+  t_message	msg;
 
   debug("listen_from_server()");
-  (void) io;
   (void) condition;
-  bzero(buf, sizeof(buf));
-  if ((nbr = xrecv(((t_cnt *) cnt)->socket, buf, sizeof(buf), 0)) > 0)
-    insert_mesg_to_list(cnt, EMPTY, ((t_cnt *) cnt)->nick, buf);
+  buf = xmalloc(CLIENT_READ_BUF_SIZE + 1);
+  if (g_io_channel_read(io, buf, CLIENT_READ_BUF_SIZE, &nbr)
+      != G_IO_ERROR_NONE)
+    {
+      g_io_channel_close(io);
+      return (-1);
+    }
+  buf[nbr] = '\0';
+  extract_msg((char *) buf, &msg);
+  if (nbr > 0)
+    insert_mesg_to_list(cnt, EMPTY, "server", trim(buf));
+  /*insert_mesg_to_list(cnt, EMPTY, ((t_cnt *) cnt)->nick, trim(buf));*/
+  free(buf);
   g_io_add_watch(io, G_IO_IN, listen_from_server, cnt);
   return (0);
 }
@@ -44,7 +53,7 @@ static void	ok_connection(t_cnt *cnt)
   gtk_widget_show(widget);
   io = g_io_channel_unix_new(cnt->socket);
   g_io_channel_init(io);
-  g_io_add_watch(io, G_IO_IN, listen_from, cnt);
+  g_io_add_watch(io, G_IO_IN, listen_from_server, cnt);
 }
 
 void		init_dialog(void *btn, t_cnt *cnt)

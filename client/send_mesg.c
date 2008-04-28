@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat Apr 26 22:28:07 2008 caner candan
-** Last update Mon Apr 28 02:09:23 2008 caner candan
+** Last update Mon Apr 28 05:19:14 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -31,6 +31,7 @@ void		send_mesg(void *btn, t_cnt *cnt)
   if (strcmp(entry_value, EMPTY))
     {
       insert_mesg_to_list(cnt, EMPTY, nick_value, entry_value);
+      send_to_server(cnt, entry_value);
       widget = glade_xml_get_widget(GLADE_XML(cnt->xml), SCROLL_MESG);
       adj = gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW(widget));
       gtk_adjustment_set_value(adj, adj->upper);
