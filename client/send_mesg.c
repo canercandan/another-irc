@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat Apr 26 22:28:07 2008 caner candan
-** Last update Mon Apr 28 05:19:14 2008 caner candan
+** Last update Mon Apr 28 06:33:43 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -17,10 +17,8 @@ void		send_mesg(void *btn, t_cnt *cnt)
 {
   GtkWidget	*nick;
   GtkWidget	*entry;
-  GtkWidget	*widget;
   void		*nick_value;
   void		*entry_value;
-  GtkAdjustment	*adj;
 
   debug("send_mesg()");
   (void) btn;
@@ -32,10 +30,7 @@ void		send_mesg(void *btn, t_cnt *cnt)
     {
       insert_mesg_to_list(cnt, EMPTY, nick_value, entry_value);
       send_to_server(cnt, entry_value);
-      widget = glade_xml_get_widget(GLADE_XML(cnt->xml), SCROLL_MESG);
-      adj = gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW(widget));
-      gtk_adjustment_set_value(adj, adj->upper);
-      gtk_scrolled_window_set_vadjustment(GTK_SCROLLED_WINDOW(widget), adj);
+      scrolled_window(cnt, SCROLL_MESG);
     }
   gtk_entry_set_text(GTK_ENTRY(entry), EMPTY);
   gtk_widget_grab_focus(GTK_WIDGET(entry));

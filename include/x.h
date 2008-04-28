@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 15:42:08 2008 caner candan
-** Last update Sun Apr 27 14:14:25 2008 caner candan
+** Last update Sun Apr 27 20:03:15 2008 caner candan
 */
 
 #ifndef __X_H__
@@ -14,19 +14,8 @@
 /*
 ** Exits, debug and errors:
 */
-# define DEBUG		01
 # define EXIT_SUCC	00
 # define EXIT_FAIL	42
-
-/*
-** Return's values
-*/
-# define FALSE		-1
-# define TRUE		00
-# define WAIT		01
-# define QUIT		03
-# define EMPTY		04
-# define DENIED		05
 
 /*
 ** Socket control:

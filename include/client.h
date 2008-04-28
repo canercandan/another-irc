@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:56:56 2008 caner candan
-** Last update Sun Apr 27 17:09:43 2008 caner candan
+** Last update Mon Apr 28 07:51:39 2008 caner candan
 */
 
 #ifndef __MY_IRC_H__
@@ -22,13 +22,26 @@
 # endif /* !FALSE */
 
 /*
-** Select description's values
+** Mesg's values
 */
-# define FD_FREE	0
-# define FD_CLIENT	1
-# define FD_SERVER	2
+# define MESG_PASS	"pass %s"
+# define MESG_NICK	"nick %s"
+# define MESG_USER	"user %s %s %s %s"
+# define MESG_PONG	"pong %s"
 
-# define TIMEOUT_SELECT	10
+# define MODE		"o"
+
+# define RET_PING	"PONG"
+
+/*
+** RFC's values
+*/
+# define MAX_NICK_LEN		9
+# define MAX_CHAN_LEN		50
+# define MAX_CMD_PARAMS		15
+# define MAX_SERVER_NAME_LEN	63
+# define MAX_HOST_NAME_LEN	255
+# define CLIENT_READ_BUF_SIZE	512
 
 /*
 ** Main's defines
@@ -41,6 +54,7 @@
 # define EMPTY		""
 # define BCHAN		"#"
 # define ENDLINE	"\r\n"
+# define SP		' '
 
 /*
 ** Gtk config
@@ -67,6 +81,7 @@
 # define DIALOG_ABOUT	"dialog_about"
 # define DIALOG_QUIT	"dialog_quit"
 # define DIALOG_ENTRY	"dialog_entry"
+# define DIALOG_REFRESH	"dialog_refresh"
 
 # define LOGIN_WINDOW	"login"
 # define LOGIN_HOST	"login_host"
@@ -125,31 +140,64 @@ typedef struct	s_cnt
   void		*nick;
   void		*real;
   int		socket;
+  void		*xml;
 }		t_cnt;
+
+/*
+** Messages' structure
+*/
+typedef struct	s_message
+{
+  char		*prefix;
+  char		*command;
+  char		*param[MAX_CMD_PARAMS];
+  char		param_count;
+}		t_message;
+
+/*
+** Messages functions structure
+*/
+typedef struct	s_fct
+{
+  char		*mesg;
+  int		(*f)();
+}		t_fct;
+
+/*
+** Global extern
+*/
+extern t_fct	gl_fct[];
 
 /*
 ** Socket's functions
 */
 int	create_socket(t_cnt *cnt);
-int	listen_from_server(void *xml, t_cnt *c);
+int	send_to_server(t_cnt *cnt, char *mesg);
+int	init_server(t_cnt *cnt);
 
 /*
 ** Main's functions
 */
-void	about(void *btn, void *xml);
+void	about(void *btn, t_cnt *cnt);
 
 /*
 ** User list functions
 */
-void	init_user_list(void *view);
-void	insert_user_to_list(void *view, char *user, int status);
+void	init_user_list(t_cnt *cnt);
+void	insert_user_to_list(t_cnt *cnt, char *user, int status);
 
 /*
 ** Mesg list functions
 */
-void	init_mesg_list(void *view);
-void	insert_mesg_to_list(void *view, char *date, char *user, char *mesg);
-void	send_mesg(void *btn, void *xml);
+void	init_mesg_list(t_cnt *cnt);
+void	insert_mesg_to_list(t_cnt *cnt, char *date, char *user, char *mesg);
+void	send_mesg(void *btn, t_cnt *cnt);
+void	scrolled_window(t_cnt *cnt, void *scroll);
+
+int	mesg_init(t_cnt *cnt, t_message *msg);
+
+int	send_pong(t_cnt *cnt, t_message *msg);
+int	send_list(t_cnt *cnt, t_message *msg);
 
 /*
 ** Treeview's functions
@@ -159,15 +207,15 @@ void	create_column(void *view, int type, char *title, int width);
 /*
 ** Connect widget functions
 */
-void	connect_btn_login(void *xml);
-void	connect_btn_dialog(void *xml);
-void	widget_connected(void *xml, char *elm, char *action, void (*f)());
+void	connect_btn_login(t_cnt *cnt);
+void	connect_btn_dialog(t_cnt *cnt);
+void	widget_connected(t_cnt *cnt, char *elm, char *action, void (*f)());
 
 /*
 ** Dialog's functions
 */
-void	init_dialog(void *btn, void *xml);
-int	connect_to_server(void *xml);
+void	init_dialog(void *btn, t_cnt *cnt);
+int	connect_to_server(t_cnt *cnt);
 
 /*
 ** Login's functions
@@ -178,5 +226,16 @@ void	error_login(void *xml, char *mesg);
 ** Entry's functions
 */
 int	check_entry(void *xml, char *entry, char *value);
+
+/*
+** Debug's functions
+*/
+void	debug(char *s);
+
+/*
+** String's functions
+*/
+char	*trim(char *s);
+void	extract_msg(char *amsg, t_message *msg);
 
 #endif /* !__MY_IRC_H__ */

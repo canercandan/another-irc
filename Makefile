@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon Apr 28 05:21:08 2008 julian kirtz
+## Last update Mon Apr 28 08:14:45 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -82,21 +82,52 @@ SRCS_SRV	=	$(PATH_SRV)add_client_to_chan.c \
 			$(PATH_SRV)server_socket_read.c \
 			$(PATH_SRV)user_in_chan.c
 
-SRCS_CLI	=	$(PATH_CLI)main.c
+SRCS_CLI	=	$(PATH_CLI)main.c			\
+			$(PATH_CLI)init_user_list.c		\
+			$(PATH_CLI)init_mesg_list.c		\
+			$(PATH_CLI)insert_user_to_list.c	\
+			$(PATH_CLI)insert_mesg_to_list.c	\
+			$(PATH_CLI)create_column.c		\
+			$(PATH_CLI)send_mesg.c			\
+			$(PATH_CLI)about.c			\
+			$(PATH_CLI)connect_btn_login.c		\
+			$(PATH_CLI)connect_btn_dialog.c		\
+			$(PATH_CLI)widget_connected.c		\
+			$(PATH_CLI)init_dialog.c		\
+			$(PATH_CLI)connect_to_server.c		\
+			$(PATH_CLI)create_socket.c		\
+			$(PATH_CLI)error_login.c		\
+			$(PATH_CLI)check_entry.c		\
+			$(PATH_CLI)send_to_server.c		\
+			$(PATH_CLI)debug.c			\
+			$(PATH_CLI)trim.c			\
+			$(PATH_CLI)extract_msg.c		\
+			$(PATH_CLI)init_server.c		\
+			$(PATH_CLI)scrolled_window.c		\
+			$(PATH_CLI)mesg_init.c			\
+			$(PATH_CLI)send_pong.c			\
+			$(PATH_CLI)send_list.c
 
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
 OBJS_CLI	=	$(SRCS_CLI:.c=.o) $(OBJS_X)
 
-INCLUDES	=	-I./include
-LIBRARY		=	-L.
+INCLUDES_GTK	=	`pkg-config --cflags gtk+-2.0 libglade-2.0`
+LIBRARY_GTK	=	`pkg-config --libs gtk+-2.0 libglade-2.0`
 
-CFLAGS		=	$(INCLUDES) -g -Wall -W -Werror -pedantic -ansi
+INCLUDES	=	-I./include $(INCLUDES_GTK)
+LIBRARY		=	-L. $(LIBRARY_GTK)
+
+DEBUG		=	-g
+PANIC		=	-Wall -W -Werror -pedantic -ansi
+
+CFLAGS		=	$(INCLUDES) $(DEBUG) $(PANIC)
 LDFLAGS		=	$(LIBRARY)
 
 CC		=	gcc
 RM		=	rm -rf
 RM_O		=	find . -name '*.o' -exec rm {} \;
+RM_CORE		=	find . -name '*.core' -exec rm {} \;
 RM_TILD		=	find . -name '*~' -exec rm {} \;
 MK		=	make
 MKD		=	mkdir -p
@@ -108,7 +139,7 @@ all		:
 			@$(MKD) $(PATH_CLI)
 			@$(MKD) $(PATH_BIN)
 			@$(MK) $(BIN_SRV)
-			##@$(MK) $(BIN_CLI)
+			@$(MK) $(BIN_CLI)
 
 $(BIN_SRV)	:	$(OBJS_SRV)
 			@$(CC) -o $@ $(OBJS_SRV) $(LDFLAGS)
@@ -118,6 +149,7 @@ $(BIN_CLI)	:	$(OBJS_CLI)
 
 clean		:
 			@$(RM_O)
+			@$(RM_CORE)
 			@$(RM_TILD)
 
 fclean		:	clean
@@ -129,4 +161,4 @@ re		:	fclean all
 .PHONY		:	all clean fclean re
 
 .c.o		:
-			$(CC) $(CFLAGS) -c $< -o $@ $(LDFLAGS)
+			$(CC) $(CFLAGS) -c $< -o $@
