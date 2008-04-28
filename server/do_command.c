@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 23 13:51:38 2008 julian kirtz
-** Last update Mon Apr 28 01:42:38 2008 julian kirtz
+** Last update Mon Apr 28 06:55:40 2008 julian kirtz
 */
 
 #include <string.h>
@@ -20,6 +20,7 @@ t_command	t_cmd[] =
     {"QUIT", cmd_quit},
     {"JOIN", cmd_join},
     {"PART", cmd_part},
+    {"PRIVMSG", cmd_privmsg},
     {0, 0}
   };
 

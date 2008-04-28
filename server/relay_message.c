@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Mon Apr 28 06:14:45 2008 julian kirtz
-** Last update Mon Apr 28 06:45:39 2008 julian kirtz
+** Last update Mon Apr 28 07:03:35 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -23,10 +23,11 @@ void	relay_message(t_server *serv, int fd, t_message *msg, t_client *client)
     i++;
   if (i < CLIENT_WRITE_BUF_LINE)
     {
-      snprintf(client->buffer_write[i], CLIENT_WRITE_BUF_LINE - 2,
+      snprintf(client->buffer_write[i], CLIENT_WRITE_BUF_SIZE - 2,
 	       "%s!%s %s %s %s", serv->client[fd].nick,
-	       serv->hostname, msg->command, client->nick, msg->param[0]);
+	       serv->hostname, msg->command, client->nick, msg->param[1]);
       len = strlen(client->buffer_write[i]);
+      printf("buftorelay: [%s] len: %d\n", client->buffer_write[i], len);
       client->buffer_write[i][len] = '\r';
       client->buffer_write[i][len + 1] = '\n';
     }
