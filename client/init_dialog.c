@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 10:33:19 2008 caner candan
-** Last update Mon Apr 28 05:02:56 2008 caner candan
+** Last update Mon Apr 28 05:08:35 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -15,19 +15,19 @@
 #include "client.h"
 #include "x.h"
 
-static gboolean	listen_from(GIOChannel *io, GIOCondition condition,
-			    void *cnt)
+static gboolean	listen_from_server(GIOChannel *io, GIOCondition condition,
+				   void *cnt)
 {
   char		buf[512];
   int		nbr;
 
+  debug("listen_from_server()");
   (void) io;
   (void) condition;
-  debug("listen_from_server()");
   bzero(buf, sizeof(buf));
   if ((nbr = xrecv(((t_cnt *) cnt)->socket, buf, sizeof(buf), 0)) > 0)
     insert_mesg_to_list(cnt, EMPTY, ((t_cnt *) cnt)->nick, buf);
-  g_io_add_watch(io, G_IO_IN, listen_from, cnt);
+  g_io_add_watch(io, G_IO_IN, listen_from_server, cnt);
   return (0);
 }
 
