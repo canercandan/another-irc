@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Sun Apr 27 19:14:01 2008 caner candan
+## Last update Mon Apr 28 05:21:08 2008 julian kirtz
 ##
 
 NAME_SRV	=	server
@@ -47,15 +47,20 @@ SRCS_SRV	=	$(PATH_SRV)add_client_to_chan.c \
 			$(PATH_SRV)client_socket_write.c \
 			$(PATH_SRV)cmd_join.c \
 			$(PATH_SRV)cmd_nick.c \
+			$(PATH_SRV)cmd_part.c \
 			$(PATH_SRV)cmd_pass.c \
+			$(PATH_SRV)cmd_privmsg.c \
 			$(PATH_SRV)cmd_quit.c \
 			$(PATH_SRV)cmd_user.c \
 			$(PATH_SRV)count_nb_port.c \
 			$(PATH_SRV)create_chan.c \
 			$(PATH_SRV)create_server.c \
+			$(PATH_SRV)delete_chan.c \
 			$(PATH_SRV)delete_client.c \
+			$(PATH_SRV)delete_client_from_chan.c \
 			$(PATH_SRV)do_command.c \
 			$(PATH_SRV)extract_msg.c \
+			$(PATH_SRV)freelist.c \
 			$(PATH_SRV)get_chan.c \
 			$(PATH_SRV)get_next_message.c \
 			$(PATH_SRV)init_all_fd.c \
@@ -74,7 +79,8 @@ SRCS_SRV	=	$(PATH_SRV)add_client_to_chan.c \
 			$(PATH_SRV)reply_namreply.c \
 			$(PATH_SRV)reply_notopic.c \
 			$(PATH_SRV)reply_response.c \
-			$(PATH_SRV)server_socket_read.c
+			$(PATH_SRV)server_socket_read.c \
+			$(PATH_SRV)user_in_chan.c
 
 SRCS_CLI	=	$(PATH_CLI)main.c
 

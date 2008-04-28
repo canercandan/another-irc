@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 14:48:23 2008 julian kirtz
-** Last update Sun Apr 27 17:34:53 2008 julian kirtz
+** Last update Mon Apr 28 05:14:27 2008 julian kirtz
 */
 
 #ifndef __SERVER_H__
@@ -38,6 +38,7 @@
 #define MAX_SERVER_NAME_LEN	63
 #define MAX_HOST_NAME_LEN	255
 
+#define ERR_QUIT_WRITE		"QUIT write error"
 #define ERR_ERROR		"ERROR"
 #define ERR_NONICKNAMEGIVEN	"431"
 #define ERR_ERRONEUSNICKNAME	"432"
@@ -46,6 +47,9 @@
 #define ERR_NEEDMOREPARAMS	"461"
 #define ERR_NOSUCHCHANNEL	"403"
 #define ERR_BADCHANNELKEY	"475"
+#define ERR_NORECIPIENT		"411"
+#define ERR_NOTEXTTOSEND	"412"
+#define ERR_NOSUCHNICK		"401"
 
 #define RPL_WELCOME		"001"
 #define RPL_YOURHOST		"002"
@@ -146,15 +150,20 @@ void		client_socket_read(t_server *server, int fd);
 void		client_socket_write(t_server *serv, int fd);
 void		cmd_join(t_server *serv, int fd, t_message *msg);
 void		cmd_nick(t_server *serv, int fd, t_message *msg);
+void		cmd_part(t_server *serv, int fd, t_message *msg);
 void		cmd_pass(t_server *serv, int fd, t_message *msg);
+void		cmd_privmsg(t_server *serv, int fd, t_message *msg);
 void		cmd_quit(t_server *serv, int fd, t_message *msg);
 void		cmd_user(t_server *serv, int fd, t_message *msg);
 int		count_nb_port(int *port);
 t_channel	*create_chan(t_server *serv, char *name);
 void		create_server(t_server *serv);
+void		delete_chan(t_server *serv, t_channel *chan);
 void		delete_client(t_server *serv, int fd);
+int		delete_client_from_chan(t_client *client, t_channel *chan);
 void		do_command(t_server *serv, int fd, t_message *msg);
 void		extract_msg(char *amsg, t_message *msg);
+void		freelist(t_list *list);
 t_channel	*get_chan(t_list *chanlist, char *chan_name);
 void		get_next_message(char *buffer, char *amsg, int *offset);
 void		init_all_fd(t_server *serv);
@@ -173,5 +182,6 @@ int		reply_namreply(t_server *serv, int fd, int index, void *chan);
 int		reply_notopic(t_server *serv, int fd, int index, void *chan);
 int		reply_response(t_server *serv, int fd, char *numeric, void *info);
 void		server_socket_read(t_server *serv, int fd);
+char		user_in_chan(t_server *serv, int fd, t_channel *chan);
 
 #endif

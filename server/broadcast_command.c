@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sun Apr 27 16:59:41 2008 julian kirtz
-** Last update Mon Apr 28 00:50:34 2008 julian kirtz
+** Last update Mon Apr 28 05:22:12 2008 julian kirtz
 */
 
 #include <stdlib.h>
@@ -22,6 +22,7 @@ void	broadcast_command(t_server *serv, int fd, t_channel *chan, t_message *msg)
   char		bmsg[CLIENT_WRITE_BUF_SIZE];
   char		*params;
   t_list	*current;
+  char		toall;
 
   params = 0;
   len = 0;
@@ -37,8 +38,15 @@ void	broadcast_command(t_server *serv, int fd, t_channel *chan, t_message *msg)
   else
     sprintf(bmsg, "%s!%s %s noreason\r\n", serv->client[fd].nick, serv->hostname, msg->command);
   current = chan->client;
+  toall = strcasecmp(msg->command, "PRIVMSG") ? 1 : 0;
   while (current)
     {
+      if (!toall)
+	if (((t_client *)current->data) == &(serv->client[fd]))
+	  {
+	    current = current->next;
+	    continue;
+	  }
       i = 0;
       while (i < CLIENT_WRITE_BUF_LINE &&
 	     ((t_client *)current->data)->buffer_write[i][0])
