@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 14:48:23 2008 julian kirtz
-** Last update Mon Apr 28 06:41:53 2008 julian kirtz
+** Last update Mon Apr 28 08:23:10 2008 julian kirtz
 */
 
 #ifndef __SERVER_H__
@@ -142,7 +142,6 @@ typedef struct		s_server
 
 void		add_client_to_chan(t_server *serv, int fd, t_channel *chan);
 void		broadcast_command(t_server *serv, int fd, t_channel *chan, t_message *msg);
-void		cfg_ip(void *foo);
 void		cfg_key(char **key);
 void		cfg_port(int *port);
 void		cfg_timeout();

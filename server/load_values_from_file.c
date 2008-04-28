@@ -5,9 +5,10 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 13:26:02 2008 julian kirtz
-** Last update Sun Apr 27 18:37:21 2008 julian kirtz
+** Last update Mon Apr 28 08:46:20 2008 julian kirtz
 */
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "x.h"
@@ -20,6 +21,11 @@ char	*load_values_from_file(char *item, char *file)
   char	*sp;
 
   fd = fopen(file, "r");
+  if (!fd)
+    {
+      printf("Error: could not find .cfg file !\n");
+      exit(-1);
+    }
   value = 0;
   while (!feof(fd))
     {
@@ -32,7 +38,6 @@ char	*load_values_from_file(char *item, char *file)
 	{
 	  value = xmalloc(sizeof(*value) * (strlen(sp + 1) + 1));
 	  value = strcpy(value, sp + 1);
-	  printf("Value: [%s]\n", value);
 	  break;
 	}
     }

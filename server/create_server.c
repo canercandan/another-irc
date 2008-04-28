@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 11:54:59 2008 julian kirtz
-** Last update Sun Apr 27 13:28:20 2008 julian kirtz
+** Last update Mon Apr 28 08:45:46 2008 julian kirtz
 */
 
 #include <stdlib.h>
@@ -16,6 +16,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include "server.h"
+#include "x.h"
 
 void			create_server(t_server *serv)
 {
@@ -25,22 +26,19 @@ void			create_server(t_server *serv)
   int			nb_port;
 
   memset(serv->fd_type, FD_FREE, MAX_FD * sizeof(int));
-  if (gethostname(serv->hostname, MAX_HOST_NAME_LEN) == -1)
-    {
-      printf("Error: could not get hostname.\n");
-      exit (-1);
-    }
+  xgethostname(serv->hostname, MAX_HOST_NAME_LEN);
   cfg_port(serv->port);
-  /*cfg_ip(serv->ip);*/
   cfg_timeout(&(serv->timeout));
   cfg_key(&(serv->key));
   nb_port = count_nb_port(serv->port);
+  printf("*** IRC Server  ***\n");
+  printf("Registration key: %s", serv->key);
   for (i = 0; i < nb_port; i++)
     {
       s = socket(PF_INET, SOCK_STREAM, 0);
       sin.sin_family = AF_INET;
       sin.sin_port = htons(serv->port[i]);
-      sin.sin_addr.s_addr = INADDR_ANY; /*voir pour utiliser les ip du fichier de conf*/
+      sin.sin_addr.s_addr = INADDR_ANY;
       bind(s, (struct sockaddr *)&sin, sizeof(sin));
       listen(s, MAX_LISTEN);
       printf("Listen on port: %d\n", serv->port[i]);

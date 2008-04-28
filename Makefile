@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon Apr 28 08:21:07 2008 julian kirtz
+## Last update Mon Apr 28 08:44:56 2008 julian kirtz
 ##
 
 NAME_SRV	=	server
@@ -26,7 +26,7 @@ BIN_CLI		=	$(PATH_BIN)$(NAME_CLI)
 SRCS_X		=	$(PATH_X)xaccept.c		\
 			$(PATH_X)xbind.c		\
 			$(PATH_X)xconnect.c		\
-			$(PATH_X)xgethostbyname.c	\
+			$(PATH_X)xgethostname.c		\
 			$(PATH_X)xlisten.c		\
 			$(PATH_X)xmalloc.c		\
 			$(PATH_X)xrealloc.c		\
