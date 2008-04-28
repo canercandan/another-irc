@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon Apr 28 08:14:45 2008 caner candan
+## Last update Mon Apr 28 08:21:07 2008 julian kirtz
 ##
 
 NAME_SRV	=	server
@@ -63,6 +63,7 @@ SRCS_SRV	=	$(PATH_SRV)add_client_to_chan.c \
 			$(PATH_SRV)freelist.c \
 			$(PATH_SRV)get_chan.c \
 			$(PATH_SRV)get_next_message.c \
+			$(PATH_SRV)get_user.c \
 			$(PATH_SRV)init_all_fd.c \
 			$(PATH_SRV)init_client.c \
 			$(PATH_SRV)is_digit.c \
@@ -74,6 +75,7 @@ SRCS_SRV	=	$(PATH_SRV)add_client_to_chan.c \
 			$(PATH_SRV)offset_to_next_value.c \
 			$(PATH_SRV)protocol_interpreter.c \
 			$(PATH_SRV)read_all_fd.c \
+			$(PATH_SRV)relay_message.c \
 			$(PATH_SRV)reply_endofnames.c \
 			$(PATH_SRV)reply_error.c \
 			$(PATH_SRV)reply_namreply.c \

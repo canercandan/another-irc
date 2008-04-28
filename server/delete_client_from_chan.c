@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sun Apr 27 20:03:46 2008 julian kirtz
-** Last update Mon Apr 28 03:41:58 2008 julian kirtz
+** Last update Mon Apr 28 08:09:55 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -18,14 +18,6 @@ int		delete_client_from_chan(t_client *client, t_channel *chan)
   t_list	*current;
   t_list	*previous;
 
-  printf("%s list before deleting:", chan->name);
-  current = chan->client;
-  while (current)
-    {
-      printf(" %s", ((t_client *)current->data)->nick);
-      current = current->next;
-    }
-  printf("\n");
   current = chan->client;
   previous = current;
   while (current)
@@ -58,7 +50,7 @@ int		delete_client_from_chan(t_client *client, t_channel *chan)
       previous = current;
       current = current->next;
     }
-  printf("%s list after deleting:", chan->name);
+  printf("[%s] nicklist after deleting:", chan->name);
   current = chan->client;
   while (current)
     {
@@ -66,7 +58,7 @@ int		delete_client_from_chan(t_client *client, t_channel *chan)
       current = current->next;
     }
   printf("\n");
-  printf("%s is in: ", client->nick);
+  printf("{%s} is in channel(s):", client->nick);
   current = client->channel;
   while (current)
     {

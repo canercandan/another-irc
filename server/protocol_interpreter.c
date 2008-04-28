@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Tue Apr 22 13:17:43 2008 julian kirtz
-** Last update Sun Apr 27 18:45:04 2008 julian kirtz
+** Last update Mon Apr 28 08:03:34 2008 julian kirtz
 */
 
 #include <stdlib.h>
@@ -15,7 +15,7 @@
 
 void		protocol_interpreter(t_server *serv, int fd)
 {
-  char		amsg[512];
+  char		amsg[CLIENT_READ_BUF_SIZE];
   t_message	msg;
   int		i;
 
@@ -23,7 +23,7 @@ void		protocol_interpreter(t_server *serv, int fd)
 		   &(serv->client[fd].buffer_offset));
   while (amsg[0] != -1)
     {
-      printf("message: [%s]\n", amsg);
+      printf("Message incoming: [%s]\n", amsg);
       extract_msg(amsg, &msg);
       printf("\textract prefix: %s\n", msg.prefix);
       printf("\textract command: %s\n", msg.command);
@@ -37,5 +37,5 @@ void		protocol_interpreter(t_server *serv, int fd)
       get_next_message(serv->client[fd].buffer_read, amsg,
 		       &(serv->client[fd].buffer_offset));
     }
-  printf("Ok\n");
+  printf("\n");
 }

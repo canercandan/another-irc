@@ -5,9 +5,10 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Thu Apr 24 13:51:49 2008 julian kirtz
-** Last update Sun Apr 27 16:15:55 2008 julian kirtz
+** Last update Mon Apr 28 08:12:58 2008 julian kirtz
 */
 
+#include <stdio.h>
 #include <string.h>
 #include <sys/time.h>
 #include "server.h"
@@ -34,5 +35,6 @@ void	cmd_user(t_server *serv, int fd, t_message *msg)
       reply_response(serv, fd, RPL_LUSERUNKNOWN, 0);
       reply_response(serv, fd, RPL_LUSERCHANNELS, 0);
       reply_response(serv, fd, RPL_LUSERME, 0);
+      printf("Client registred %s on socket %d\n", serv->client[fd].nick, fd);
     }
 }

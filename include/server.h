@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 14:48:23 2008 julian kirtz
-** Last update Mon Apr 28 05:14:27 2008 julian kirtz
+** Last update Mon Apr 28 06:41:53 2008 julian kirtz
 */
 
 #ifndef __SERVER_H__
@@ -165,6 +165,7 @@ void		do_command(t_server *serv, int fd, t_message *msg);
 void		extract_msg(char *amsg, t_message *msg);
 void		freelist(t_list *list);
 t_channel	*get_chan(t_list *chanlist, char *chan_name);
+t_client	*get_user(t_server *serv, char *nick);
 void		get_next_message(char *buffer, char *amsg, int *offset);
 void		init_all_fd(t_server *serv);
 void		init_client(t_server *serv, int fd);
@@ -176,6 +177,7 @@ char		*nicklist_of_chan(t_channel *chan);
 void		offset_to_next_value(int *offset, char *str, char sep);
 void		protocol_interpreter(t_server *serv, int fd);
 void		read_all_fd(t_server *serv);
+void		relay_message(t_server *serv, int fd, t_message *msg, t_client *client);
 int		reply_endofnames(t_server *serv, int fd, int index, void *chan);
 void		reply_error(t_server *serv, int fd, t_message *msg);
 int		reply_namreply(t_server *serv, int fd, int index, void *chan);

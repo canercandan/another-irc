@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:18:35 2008 julian kirtz
-** Last update Mon Apr 28 03:11:21 2008 julian kirtz
+** Last update Mon Apr 28 08:07:30 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -27,7 +27,7 @@ void		add_client_to_chan(t_server *serv, int fd, t_channel *chan)
   channel->data = chan;
   channel->next = serv->client[fd].channel;
   serv->client[fd].channel = channel;
-  printf("%s list after adding:", chan->name);
+  printf("[%s] nicklist after adding client:", chan->name);
   current = chan->client;
   while (current)
     {
@@ -35,7 +35,7 @@ void		add_client_to_chan(t_server *serv, int fd, t_channel *chan)
       current = current->next;
     }
   printf("\n");
-  printf("%s is in: ", serv->client[fd].nick);
+  printf("{%s} is in channel(s):", serv->client[fd].nick);
   current = serv->client[fd].channel;
   while (current)
     {

@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sun Apr 27 19:53:40 2008 julian kirtz
-** Last update Mon Apr 28 02:15:36 2008 julian kirtz
+** Last update Mon Apr 28 08:12:21 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -22,14 +22,14 @@ void		delete_chan(t_server *serv, t_channel *chan)
   previous = current;
   while (current)
     {
-      printf("Compare chan %s and %s\n", ((t_channel *)current->data)->name, chan->name);
       if (((t_channel *)current->data) == chan)
 	{
 	  if (previous == current)
 	    serv->channel = current->next;
 	  else
 	    previous->next = current->next;
-	  printf("%s chan deleted\n", ((t_channel *)current->data)->name);
+	  printf("Chan [%s] is empty, deleted\n",
+		 ((t_channel *)current->data)->name);
 	  freelist(((t_channel *)current->data)->client);
 	  free(((t_channel *)current->data)->banmask);
 	  free(((t_channel *)current->data)->key);

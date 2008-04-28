@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Thu Apr 24 15:42:19 2008 julian kirtz
-** Last update Sun Apr 27 19:36:25 2008 julian kirtz
+** Last update Mon Apr 28 07:55:46 2008 julian kirtz
 */
 
 #include <stdlib.h>
@@ -20,6 +20,7 @@ void	delete_client(t_server *serv, int fd)
   free(serv->client[fd].realname);
   free(serv->client[fd].username);
   freelist(serv->client[fd].channel);
+  printf("Client deleted: %s, socket %d closed\n", serv->client[fd].nick, fd);
   init_client(serv, fd);
   serv->fd_type[fd] = FD_FREE;
 }

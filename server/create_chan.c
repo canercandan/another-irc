@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:28:32 2008 julian kirtz
-** Last update Mon Apr 28 02:12:18 2008 julian kirtz
+** Last update Mon Apr 28 08:10:58 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -29,7 +29,7 @@ t_channel	*create_chan(t_server *serv, char *name)
   chan->client = 0;
   channel = xmalloc(sizeof(*channel));
   channel->data = chan;
-  printf("%s AddressOf chan: 0x%x\n", name, (unsigned int)chan);
+  printf("New channel: %s\n", name);
   channel->next = serv->channel;
   serv->channel = channel;
   return (chan);
