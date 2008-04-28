@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Wed Apr 16 11:54:59 2008 julian kirtz
-** Last update Mon Apr 28 08:45:46 2008 julian kirtz
+** Last update Mon Apr 28 08:53:41 2008 julian kirtz
 */
 
 #include <stdlib.h>
@@ -32,7 +32,7 @@ void			create_server(t_server *serv)
   cfg_key(&(serv->key));
   nb_port = count_nb_port(serv->port);
   printf("*** IRC Server  ***\n");
-  printf("Registration key: %s", serv->key);
+  printf("Registration key: %s\n", serv->key);
   for (i = 0; i < nb_port; i++)
     {
       s = socket(PF_INET, SOCK_STREAM, 0);
