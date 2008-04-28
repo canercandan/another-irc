@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:44:32 2008 julian kirtz
-** Last update Mon Apr 28 01:53:53 2008 julian kirtz
+** Last update Mon Apr 28 02:27:05 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -24,7 +24,10 @@ t_channel	*get_chan(t_list *chanlist, char *chan_name)
       break;
     else
       current = current->next;
-  printf("search: %s, Chan found: 0x%x\n", chan_name, (unsigned int)current);
+  if (current)
+    printf("search: %s, Chan found: 0x%x\n", chan_name, ((unsigned int)((t_channel *)current->data)));
+  else
+    printf("search: %s, Chan NOT found: 0x%x\n", chan_name, (unsigned int)current);
   if (current)
     return (((t_channel *)current->data));
   return (0);

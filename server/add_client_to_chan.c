@@ -5,7 +5,7 @@
 ** Login   <kirtz_j@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:18:35 2008 julian kirtz
-** Last update Mon Apr 28 02:09:24 2008 julian kirtz
+** Last update Mon Apr 28 03:11:21 2008 julian kirtz
 */
 
 #include <stdio.h>
@@ -32,6 +32,14 @@ void		add_client_to_chan(t_server *serv, int fd, t_channel *chan)
   while (current)
     {
       printf(" %s", ((t_client *)current->data)->nick);
+      current = current->next;
+    }
+  printf("\n");
+  printf("%s is in: ", serv->client[fd].nick);
+  current = serv->client[fd].channel;
+  while (current)
+    {
+      printf(" %s", ((t_channel *)current->data)->name);
       current = current->next;
     }
   printf("\n");
