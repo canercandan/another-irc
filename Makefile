@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon Apr 28 08:44:56 2008 julian kirtz
+## Last update Mon Apr 28 08:48:18 2008 julian kirtz
 ##
 
 NAME_SRV	=	server
@@ -39,7 +39,6 @@ SRCS_X		=	$(PATH_X)xaccept.c		\
 
 SRCS_SRV	=	$(PATH_SRV)add_client_to_chan.c \
 			$(PATH_SRV)broadcast_command.c \
-			$(PATH_SRV)cfg_ip.c \
 			$(PATH_SRV)cfg_key.c \
 			$(PATH_SRV)cfg_port.c \
 			$(PATH_SRV)cfg_timeout.c \
