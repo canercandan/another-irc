@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat Apr 26 16:56:56 2008 caner candan
-** Last update Mon Apr 28 07:51:39 2008 caner candan
+** Last update Mon Apr 28 08:42:30 2008 caner candan
 */
 
 #ifndef __MY_IRC_H__
@@ -28,6 +28,7 @@
 # define MESG_NICK	"nick %s"
 # define MESG_USER	"user %s %s %s %s"
 # define MESG_PONG	"pong %s"
+# define MESG_JOIN	"join %s"
 
 # define MODE		"o"
 
@@ -198,6 +199,7 @@ int	mesg_init(t_cnt *cnt, t_message *msg);
 
 int	send_pong(t_cnt *cnt, t_message *msg);
 int	send_list(t_cnt *cnt, t_message *msg);
+int	send_chan(t_cnt *cnt, t_message *msg);
 
 /*
 ** Treeview's functions

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon Apr 28 07:25:06 2008 caner candan
-** Last update Mon Apr 28 07:55:52 2008 caner candan
+** Last update Mon Apr 28 08:34:15 2008 caner candan
 */
 
 #include <string.h>
@@ -14,6 +14,7 @@
 t_fct	gl_fct[] = {
   {RET_PING, send_pong},
   {"343", send_list},
+  {"376", send_chan},
   {0, 0}
 };
 

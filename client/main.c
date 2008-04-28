@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat Apr 26 17:06:02 2008 caner candan
-** Last update Mon Apr 28 04:15:33 2008 caner candan
+** Last update Mon Apr 28 08:32:08 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -17,6 +17,7 @@ int	main(int ac, char **av)
 {
   t_cnt	cnt;
 
+  gtk_set_locale();
   gtk_init(&ac, &av);
   cnt.xml = glade_xml_new(XML_FILE, NULL, NULL);
   widget_connected(&cnt, LOGIN_WINDOW, DELETE_EVENT, gtk_main_quit);

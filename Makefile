@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon Apr 28 08:48:18 2008 julian kirtz
+## Last update Mon Apr 28 08:50:02 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -107,7 +107,8 @@ SRCS_CLI	=	$(PATH_CLI)main.c			\
 			$(PATH_CLI)scrolled_window.c		\
 			$(PATH_CLI)mesg_init.c			\
 			$(PATH_CLI)send_pong.c			\
-			$(PATH_CLI)send_list.c
+			$(PATH_CLI)send_list.c			\
+			$(PATH_CLI)send_chan.c
 
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)

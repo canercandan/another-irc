@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon Apr 28 06:15:40 2008 caner candan
-** Last update Mon Apr 28 06:39:25 2008 caner candan
+** Last update Mon Apr 28 08:43:17 2008 caner candan
 */
 
 #include <stdio.h>
@@ -21,6 +21,8 @@ int	init_server(t_cnt *cnt)
   snprintf(buf, sizeof(buf), MESG_NICK, (char *) cnt->nick);
   send_to_server(cnt, buf);
   snprintf(buf, sizeof(buf), MESG_USER, (char *) cnt->real, MODE, MODE, MODE);
+  send_to_server(cnt, buf);
+  snprintf(buf, sizeof(buf), MESG_JOIN, (char *) cnt->chan);
   send_to_server(cnt, buf);
   return (0);
 }

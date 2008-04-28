@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 10:33:19 2008 caner candan
-** Last update Mon Apr 28 08:11:48 2008 caner candan
+** Last update Mon Apr 28 08:39:42 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -32,13 +32,8 @@ static gboolean	listen_from_server(GIOChannel *io, GIOCondition condition,
   buf[nbr] = '\0';
   if (nbr > 0)
     {
-      debug("prefix");
-      debug(msg.prefix);
-      debug("commande");
-      debug(msg.command);
-      debug("param[0]");
-      debug(msg.param[0]);
       extract_msg((char *) buf, &msg);
+      printf("[%s]\n", msg.command);
       mesg_init(cnt, &msg);
       insert_mesg_to_list(cnt, EMPTY, "server", trim(buf));
     }
@@ -52,6 +47,7 @@ static void	ok_connection(t_cnt *cnt)
   GtkWidget	*widget;
   GIOChannel	*io;
 
+  debug("ok_connection()");
   connect_btn_dialog(cnt);
   widget = glade_xml_get_widget(GLADE_XML(cnt->xml), LOGIN_WINDOW);
   gtk_widget_hide(widget);
