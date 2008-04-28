@@ -5,20 +5,21 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 10:31:00 2008 caner candan
-** Last update Sun Apr 27 16:05:57 2008 caner candan
+** Last update Mon Apr 28 02:06:42 2008 caner candan
 */
 
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 #include "client.h"
 
-void		connect_btn_login(void *xml)
+void		connect_btn_login(t_cnt *cnt)
 {
-  widget_connected(xml, LOGIN_QUIT, CLICKED, gtk_main_quit);
-  widget_connected(xml, LOGIN_SIGNIN, CLICKED, init_dialog);
-  widget_connected(xml, LOGIN_HOST, ACTIVATE, init_dialog);
-  widget_connected(xml, LOGIN_PORT, ACTIVATE, init_dialog);
-  widget_connected(xml, LOGIN_CHAN, ACTIVATE, init_dialog);
-  widget_connected(xml, LOGIN_NICK, ACTIVATE, init_dialog);
-  widget_connected(xml, LOGIN_REAL, ACTIVATE, init_dialog);
+  debug("connect_btn_login()");
+  widget_connected(cnt, LOGIN_QUIT, CLICKED, gtk_main_quit);
+  widget_connected(cnt, LOGIN_SIGNIN, CLICKED, init_dialog);
+  widget_connected(cnt, LOGIN_HOST, ACTIVATE, init_dialog);
+  widget_connected(cnt, LOGIN_PORT, ACTIVATE, init_dialog);
+  widget_connected(cnt, LOGIN_CHAN, ACTIVATE, init_dialog);
+  widget_connected(cnt, LOGIN_NICK, ACTIVATE, init_dialog);
+  widget_connected(cnt, LOGIN_REAL, ACTIVATE, init_dialog);
 }

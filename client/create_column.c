@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat Apr 26 19:50:23 2008 caner candan
-** Last update Sat Apr 26 19:51:38 2008 caner candan
+** Last update Mon Apr 28 02:07:01 2008 caner candan
 */
 
 #include <gtk/gtk.h>
@@ -17,6 +17,7 @@ void			create_column(void *view, int type,
   GtkTreeViewColumn	*column;
   GtkCellRenderer	*renderer;
 
+  debug("create_column()");
   renderer = gtk_cell_renderer_text_new();
   column = gtk_tree_view_column_new_with_attributes(title, renderer,
 						    "text", type,

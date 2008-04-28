@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 14:47:04 2008 caner candan
-** Last update Sun Apr 27 14:47:37 2008 caner candan
+** Last update Mon Apr 28 02:07:34 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -25,6 +25,7 @@ int			create_socket(t_cnt *cnt)
   struct protoent	*pe;
   struct in_addr	in;
 
+  debug("create_socket()");
   pe = getprotobyname("tcp");
   if ((cnt->socket = socket(PF_INET, SOCK_STREAM, pe->p_proto)) < 0)
     return (-1);

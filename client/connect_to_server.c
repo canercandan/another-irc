@@ -5,12 +5,13 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sun Apr 27 13:38:11 2008 caner candan
-** Last update Sun Apr 27 19:50:11 2008 caner candan
+** Last update Mon Apr 28 02:06:34 2008 caner candan
 */
 
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 #include "client.h"
+#include "x.h"
 
 static void	*return_widget(void *xml, void *elm)
 {
@@ -20,24 +21,19 @@ static void	*return_widget(void *xml, void *elm)
   return ((void *) gtk_entry_get_text(GTK_ENTRY(widget)));
 }
 
-int		connect_to_server(void *xml)
+int		connect_to_server(t_cnt *cnt)
 {
-  t_cnt		cnt;
-
-  cnt.host = return_widget(xml, LOGIN_HOST);
-  cnt.port = return_widget(xml, LOGIN_PORT);
-  if (create_socket(&cnt) < 0)
+  debug("connect_to_server()");
+  cnt->host = return_widget(cnt->xml, LOGIN_HOST);
+  cnt->port = return_widget(cnt->xml, LOGIN_PORT);
+  if (create_socket(cnt) < 0)
     return (-1);
-  listen_from_server(xml, &cnt);
-  /*
-    send_to_server(xml, &cnt, NULL);
-  listen_from_server(xml, &cnt);
-  */
-  cnt.chan = return_widget(xml, LOGIN_CHAN);
-  cnt.nick = return_widget(xml, LOGIN_NICK);
-  if (check_entry(xml, LOGIN_REAL, EMPTY) < 0)
-    cnt.real = cnt.nick;
+  cnt->chan = return_widget(cnt->xml, LOGIN_CHAN);
+  cnt->nick = return_widget(cnt->xml, LOGIN_NICK);
+  insert_user_to_list(cnt, cnt->nick, TRUE);
+  if (check_entry(cnt->xml, LOGIN_REAL, EMPTY) < 0)
+    cnt->real = cnt->nick;
   else
-    cnt.real = return_widget(xml, LOGIN_REAL);
+    cnt->real = return_widget(cnt->xml, LOGIN_REAL);
   return (0);
 }
